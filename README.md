@@ -1,0 +1,3 @@
+This is my project for the Software University in Bulgaria. I am trying my best, while learning Angular. We have several requirements. 
+Here is a list of them :) ...
+https://softuni.bg/trainings/resources/officedocument/61960/project-assignment-angular-july-2021/3473
