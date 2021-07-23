@@ -1,0 +1,25 @@
+{
+  "name": "Angular",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gogost6/Angular.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gogost6/Angular/issues"
+  },
+  "homepage": "https://github.com/gogost6/Angular#readme",
+  "dependencies": {
+    "@angular/cli": "^12.1.1",
+    "angular": "^1.8.2",
+    "typescript": "^4.3.5"
+  }
+}
