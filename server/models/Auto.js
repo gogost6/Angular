@@ -2,8 +2,8 @@ const { model, Schema } = require('mongoose');
 
 const schema = {
     condition: { type: String, required: true },
-    newImport: {type: String},
-    hasDocuments: {type: String},
+    newImport: {type: String, required: true},
+    hasDocuments: {type: String, required: true},
     type: { type: String, required: true },
     make: { type: String, required: true },
     model: { type: String, required: true },
