@@ -4,13 +4,10 @@ import { ICountry } from './shared/interfaces/country';
 
 @Injectable()
 export class CountriesService {
-  countries: any = [];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
+
   loadCountries() {
-    this.httpClient.get("assets/countries.json").subscribe(data => {
-      this.countries = data;
-      console.log(this.countries.Albania.towns)
-    })
+    return this.http.get<ICountry[]>(`https://restcountries.eu/rest/v2/name/united`);
   }
 }
