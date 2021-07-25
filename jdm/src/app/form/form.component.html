@@ -1,30 +1,36 @@
-<form class="formSearch" action="/jdm/results" method="POST">
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="formSearch" action="/jdm/results" method="POST">
     <ul>
         <li>
             <label for="make">Make</label>
-            <select  name="make" id="make">
+            <select ngModel #makeSelect="ngModel" name="make" id="make">
                 <option value="" selected="selected">Any</option>
-                <option value="acura">Acura</option>
-                <option value="honda">Honda</option>
-                <option value="huyndai">Huyndai</option>
-                <option value="infinity">Infinity</option>
-                <option value="lexus">Lexus</option>
-                <option value="mitsubishi">Mitsubishi</option>
-                <option value="nissan">Nissan</option>
-                <option value="subaru">Subaru</option>
-                <option value="suzuki">Suzuki</option>
-                <option value="toyota">Toyota</option>
+                <option value="Acura">Acura</option>
+                <option value="Honda">Honda</option>
+                <option value="Huyndai">Huyndai</option>
+                <option value="Infinity">Infinity</option>
+                <option value="Lexus">Lexus</option>
+                <option value="Mitsubishi">Mitsubishi</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Subaru">Subaru</option>
+                <option value="Suzuki">Suzuki</option>
+                <option value="Toyota">Toyota</option>
             </select>
         </li>
 
-        <li>
-            <div>
-                <label for="model">Model</label>
-                <select name="make" id="make" disabled>
-                    <option value="" selected="selected">Any</option>
-                </select>
-            </div>
-        </li>
+        <div *ngIf="!makeSelect.value">
+            <label for="model">Model</label>
+            <select name="make" id="make" disabled>
+                <option value="" selected="selected">Any</option>
+            </select>
+        </div>
+        
+        <div *ngIf="makeSelect.value">
+            <label for="model">Model</label>
+            <select  name="make" id="make">
+                <option *ngFor="let model of carsData.Acura.models" [value]="model"> {{model}}</option>
+            </select>
+        </div>
+        
         <li>
             <label for="maxPrice">Max price</label>
             <input type="text">
@@ -35,9 +41,9 @@
         </li>
         <li>
             <label for="country">Country</label>
-            <select name="country" id="country">
+            <select name="country" ngModel #countrySelect="ngModel">
                 <option value="" selected="selected">Any</option>
-                <!--<option value="albania">Albania</option>
+                <option value="albania">Albania</option>
                 <option value="andorra">Andorra</option>
                 <option value="angola">Angola</option>
                 <option value="armenia">Armenia</option>
@@ -88,16 +94,28 @@
                 <option value="turkey">Turkey</option>
                 <option value="ukraine">Ukraine</option>
                 <option value="uk">United Kingdom</option>
-                <option value="vatican">Vatican City</option> -->
+                <option value="vatican">Vatican City</option>
             </select>
         </li>
 
-        <li>
-            <label for="city">City</label>
-            <select name="city" id="city">
-                <option value="" selected="selected">Any</option>
-            </select>
-        </li>
+        <div *ngIf="!countrySelect.value">
+            <li>
+                <label for="city">City</label>
+                <select name="city" id="city" disabled>
+                    <option value="" selected="selected">Any</option>
+                </select>
+            </li>
+        </div>
+
+        <div *ngIf="countrySelect.value">
+            <li>
+                <label for="city">City</label>
+                <select name="city" id="city">
+                    <option value="" selected="selected">Any</option>
+                </select>
+            </li>
+        </div>
+
         <li>
             <label for="yearMade">Year</label>
             <select name="yearMade" id="yearMade">
@@ -167,3 +185,6 @@
     </ul>
 
 </form>
+<p>Country value: {{ countrySelect.value }}</p>
+
+<p>Make value: {{ makeSelect.value }}</p>

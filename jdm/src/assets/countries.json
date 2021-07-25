@@ -1,5 +1,6 @@
-{
-    "Albania": {
+[
+    {
+        "country": "Albania",
         "value": "albania",
         "towns": [
             "Bajram Curri",
@@ -78,7 +79,8 @@
             "Vorë"
         ]
     },
-    "Andorra": {
+    {
+        "country": "Andorra",
         "value": "andorra",
         "towns": [
             "Canillo",
@@ -147,7 +149,8 @@
             "Els Vilars d'Engordany"
         ]
     },
-    "Angola": {
+    {
+        "country": "Angola",
         "value": "angola",
         "towns": [
             "Ambriz",
@@ -343,7 +346,8 @@
             "Xá-Muteba"
         ]
     },
-    "Armenia": {
+    {
+        "country": "Armenia",
         "value": "armenia",
         "towns": [
             "Abovyan City",
@@ -473,7 +477,8 @@
             "Jugha Town"
         ]
     },
-    "Austria": {
+    {
+        "country": "Austria",
         "value": "austria",
         "towns": [
             "Vienna",
@@ -555,7 +560,8 @@
             "Sankt Andrä"
         ]
     },
-    "Azerbaijan": {
+    {
+        "country": "Azerbaijan",
         "value": "azerbaijan",
         "towns": [
             "Agdash",
@@ -625,7 +631,8 @@
             "Zangilan"
         ]
     },
-    "Belarus": {
+    {
+        "country": "Belarus",
         "value": "belarus",
         "towns": [
             "Minsk",
@@ -655,7 +662,8 @@
             "Myadel"
         ]
     },
-    "Belgium": {
+    {
+        "country": "Belgium",
         "value": "belgium",
         "towns": [
             "Aalst (Alost)",
@@ -795,4 +803,4 @@
             "Zoutleeuw (fr: Léau)"
         ]
     }
-}
+]
