@@ -15,27 +15,32 @@ module.exports = () => (req, res, next) => {
         next();
     }
 
-    async function register({email, password, gender}) {
-        const existing = await userService.getUserByEmail(email);
+    async function register({email, password, username}) {
+        const existingByEmail = await userService.getUserByEmail(email);
+        const existingByUsername = await userService.getUserByUsername(username);
 
-        if(existing) {
+        if(existingByEmail) {
             throw new Error('Email is registered already');
         } 
 
+        if(existingByUsername) {
+            throw new Error('Username is taken!');
+        } 
+
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await userService.createUser(email, hashedPassword, gender);
+        const user = await userService.createUser(email, hashedPassword, username);
         req.user = createToken(user);
     }
 
-    async function login({ email, password }) {
-        const user = await userService.getUserByEmail(email);
+    async function login({ username, password }) {
+        const user = await userService.getUserByUsername(username);
 
         if (!user) {
-            throw new Error('Wrong email or password!');
+            throw new Error('Wrong username or password!');
         } else {
             const isMatch = await bcrypt.compare(password, user.hashedPassword);
             if (!isMatch) {
-                throw new Error('Wrong email or password!');
+                throw new Error('Wrong username or password!');
             } else {
                 req.user = createToken(user);
             }
@@ -47,7 +52,7 @@ module.exports = () => (req, res, next) => {
     }
 
     function createToken(user) {
-        const userViewModel = { _id: user._id, email: user.email, gender: user.gender};
+        const userViewModel = { _id: user._id, email: user.email, username: user.username,};
         const token = jwt.sign(userViewModel, TOKEN_SECRET);
         res.cookie(COOKIE_NAME, token, {httpOnly: true});
 
@@ -63,7 +68,8 @@ module.exports = () => (req, res, next) => {
                 console.log('Known user ' + userData.email);
             } catch(err) {
                 res.clearCookie(COOKIE_NAME);
-                res.redirect('/user/login');
+                //res.redirect('/user/login');
+                res.status(204).end();
                 return false;
             }
         }
