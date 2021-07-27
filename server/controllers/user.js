@@ -10,13 +10,9 @@ router.post('/register', isGuest(),
     body('username')
         .trim()
         .isAlphanumeric()
-<<<<<<< HEAD
         .withMessage('The username should contain only chars!')
         .isLength({min: 5})
         .withMessage('The username should be atleast 5 chars!'),
-=======
-        .withMessage('The username should contain only chars!'),
->>>>>>> 8deea4e3debc983acd32a7caad48c17af655db02
     body('password')
         .trim()
         .isLength({ min: 4 })

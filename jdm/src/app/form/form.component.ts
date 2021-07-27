@@ -1,21 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { ICountry } from '../shared/interfaces/country';
-import {CountriesService} from '../countries.service';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { ICars } from '../shared/interfaces/cars';
+import { CountriesService } from '../countries.service';
+import { HttpClient } from '@angular/common/http';
+import * as carsData from '../../assets/cars.json'
+// import * as data from '../countries.json';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.sass']
 })
-export class FormComponent{
-  towns: Object | undefined;
+export class FormComponent implements OnInit{
+  makeSelect: HTMLInputElement | undefined;
+  thisCar: string | undefined;
+  towns: HTMLElement | undefined;
+  countrySelect!: string;
+  carsData = carsData;
 
-  // constructor(private CountriesService: CountriesService) {
-  //   this.fetchRecentPosts();
-  // }
+  constructor(private httpClient: HttpClient) {
+    
+  }
+  ngOnInit(): void {
+    console.log(this.makeSelect?.value);
+  }
 
-  // fetchRecentPosts(): void {
-  //   this.countries = undefined;
-  //   this.CountriesService.loadCountries().subscribe(countries => this.countries = countries);
-  // }
+  onSubmit(f: Object): void {
+    console.log(f)
+  }
 }
