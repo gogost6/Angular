@@ -1,62 +1,86 @@
-<form class="formSearch" action="/jdm/results" method="POST">
+{{carMake}}
+
+<form #form="ngForm" (ngSubmit)="searchHandler(form)" class="formSearch">
     <ul>
         <li>
             <label for="make">Make</label>
-            <select  name="make" id="make">
-                <option value="" selected>Any</option>
+            <select name="make" id="make" #makeSelect="ngModel" [(ngModel)]="carMake">
+                <option value="" selected="selected">Any</option>
                 <option *ngFor="let make of jsonData.cars" [value]="make">{{make}}</option>
             </select>
         </li>
 
         <li>
-            <label for="make">Make</label>
-            <input type="text" name="make">
+            <label for="model">Model</label>
+            <ng-container *ngIf="!carMake">
+                <select name="model" id="model" disabled ngModel>
+                    <option value="">Any</option>
+                </select>
+            </ng-container>
+
+            <ng-container *ngIf="carMake">
+                <select name="model" id="model" ngModel>
+                    <option value="">Any</option>
+                    <option *ngFor="let model of cars[carMake].models" [value]="model">{{model}}</option>
+                </select>
+            </ng-container>
         </li>
-        
+
         <li>
             <label for="maxPrice">Max price</label>
-            <input type="text" name="maxPrice">
+            <input type="text" name="maxPrice" id="maxPrice" ngModel>
         </li>
         <li>
             <label for="minPrice">Min price</label>
-            <input type="text" name="minPrice">
+            <input type="text" name="minPrice" ngModel>
         </li>
         <li>
             <label for="country">Country</label>
-            <select name="country">
+            <select name="country" id="country" [(ngModel)]="city">
                 <option value="" selected>Any</option>
                 <option *ngFor="let country of jsonData.countries" [value]="country">{{country}}</option>
             </select>
         </li>
 
         <li>
-            <label for="minPrice">City</label>
-            <input type="text" name="city">
+            <label for="city">City</label>
+            <ng-container *ngIf="!city">
+                <select name="city" id="city" disabled ngModel>
+                    <option value="">Any</option>
+                </select>
+            </ng-container>
+
+            <ng-container *ngIf="city">
+                <select name="city" id="city" ngModel>
+                    <option value="">Any</option>
+                    <option *ngFor="let town of countries[city].towns" [value]="town">{{town}}</option>
+                </select>
+            </ng-container>
         </li>
 
         <li>
             <label for="yearMade">Year</label>
-            <select name="yearMade" id="yearMade">
+            <select name="yearMade" id="yearMade" ngModel>
                 <option value="" selected="selected">Any</option>
                 <option *ngFor="let year of jsonData.years" [value]="year">{{year}}</option>
             </select>
         </li>
         <li>
             <label for="engine">Engine</label>
-            <select name="engine" id="engine">
+            <select name="engine" id="engine" ngModel>
                 <option value="" selected="selected">Any</option>
                 <option *ngFor="let engine of jsonData.engine" [value]="engine">{{engine}}</option>
             </select>
         </li>
         <li>
             <label for="gears">Gears</label>
-            <select name="gears" id="gears">
+            <select name="gears" id="gears" ngModel>
                 <option value="" selected="selected">Any</option>
                 <option *ngFor="let gears of jsonData.gears" [value]="gears">{{gears}}</option>
             </select>
         </li>
         <li>
-            <button class="btn" type="submit">Search</button>
+            <button>Search</button>
         </li>
     </ul>
 
@@ -64,9 +88,7 @@
 
 <div class="col-lg-2 col-md-4 mb-4">
     <div class="card h-100">
-        <img class="card-img-top"
-            src=""
-            alt="car Image">
+        <img class="card-img-top" src="" alt="car Image">
         <div class="card-body">
             <h5 class="card-title"><span>VW Golf</span></h5>
             <p>Golf 4 GTI</p>
