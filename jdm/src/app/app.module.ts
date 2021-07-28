@@ -19,8 +19,7 @@ import { FunctionalModule } from './functional/functional.module';
     CoreModule,
     AuthModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
