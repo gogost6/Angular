@@ -1,0 +1,81 @@
+<form class="formSearch" action="/jdm/results" method="POST">
+    <ul>
+        <li>
+            <label for="make">Make</label>
+            <select  name="make" id="make">
+                <option value="" selected>Any</option>
+                <option *ngFor="let make of jsonData.cars" [value]="make">{{make}}</option>
+            </select>
+        </li>
+
+        <li>
+            <label for="make">Make</label>
+            <input type="text" name="make">
+        </li>
+        
+        <li>
+            <label for="maxPrice">Max price</label>
+            <input type="text" name="maxPrice">
+        </li>
+        <li>
+            <label for="minPrice">Min price</label>
+            <input type="text" name="minPrice">
+        </li>
+        <li>
+            <label for="country">Country</label>
+            <select name="country">
+                <option value="" selected>Any</option>
+                <option *ngFor="let country of jsonData.countries" [value]="country">{{country}}</option>
+            </select>
+        </li>
+
+        <li>
+            <label for="minPrice">City</label>
+            <input type="text" name="city">
+        </li>
+
+        <li>
+            <label for="yearMade">Year</label>
+            <select name="yearMade" id="yearMade">
+                <option value="" selected="selected">Any</option>
+                <option *ngFor="let year of jsonData.years" [value]="year">{{year}}</option>
+            </select>
+        </li>
+        <li>
+            <label for="engine">Engine</label>
+            <select name="engine" id="engine">
+                <option value="" selected="selected">Any</option>
+                <option *ngFor="let engine of jsonData.engine" [value]="engine">{{engine}}</option>
+            </select>
+        </li>
+        <li>
+            <label for="gears">Gears</label>
+            <select name="gears" id="gears">
+                <option value="" selected="selected">Any</option>
+                <option *ngFor="let gears of jsonData.gears" [value]="gears">{{gears}}</option>
+            </select>
+        </li>
+        <li>
+            <button class="btn" type="submit">Search</button>
+        </li>
+    </ul>
+
+</form>
+
+<div class="col-lg-2 col-md-4 mb-4">
+    <div class="card h-100">
+        <img class="card-img-top"
+            src=""
+            alt="car Image">
+        <div class="card-body">
+            <h5 class="card-title"><span>VW Golf</span></h5>
+            <p>Golf 4 GTI</p>
+            <h5 class="mt-4 card-info"> <span>$3500</span></h5>
+            <p>350000 km</p>
+            <p>Bulgaria</p>
+        </div>
+        <div class="card-footer">
+            <a href="" class="btn btn-primary">Details</a>
+        </div>
+    </div>
+</div>

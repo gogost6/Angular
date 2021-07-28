@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { FormComponent } from './form/form.component';
+import { AboutComponent } from './core/about/about.component';
+import { FormComponent } from './functional/form/form.component';
+import { NewsComponent } from './functional/news/news.component';
+import { SearchComponent } from './functional/search/search.component';
 
 const routes: Routes = [
   {
@@ -12,24 +12,20 @@ const routes: Routes = [
     redirectTo: '/home'
   },
   {
-    path: 'auth/logout',
-    redirectTo: '/home'
-  },
-  {
     path: 'home',
     component: FormComponent
   },
   {
+    path: 'search',
+    component: SearchComponent
+  },
+  {
+    path: 'news',
+    component: NewsComponent
+  },
+  {
     path: 'about',
     component: AboutComponent
-  },
-  {
-    path: 'auth/login',
-    component: LoginComponent
-  },
-  {
-    path: 'auth/register',
-    component: RegisterComponent
   }
 ];
 
