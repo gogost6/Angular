@@ -4,6 +4,7 @@ import { FormComponent } from './form/form.component';
 import { RecentComponent } from './recent/recent.component';
 import { SearchComponent } from './search/search.component';
 import { ForumComponent } from './forum/forum.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { ForumComponent } from './forum/forum.component';
     ForumComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class FunctionalModule { }
