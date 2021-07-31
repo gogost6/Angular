@@ -145,5 +145,12 @@
         "sedan",
         "stretch limousine",
         "hatchback"
+    ],
+    "currency": [
+        "USD",
+        "EUR",
+        "BGN",
+        "GBP",
+        "CHF"
     ]
 }
