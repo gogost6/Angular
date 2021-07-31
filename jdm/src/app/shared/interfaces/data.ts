@@ -4,4 +4,6 @@ export interface IData {
     years: string[];
     engine: string[];
     gears: string[];
+    colors: string[];
+    carType: string[];
 }
