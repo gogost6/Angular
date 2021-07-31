@@ -133,5 +133,17 @@
         "Blue",
         "Navy",
         "Black"
+    ],
+    "carType": [
+        "van",
+        "jeep",
+        "cabrio",
+        "station wagon",
+        "coupe",
+        "minivan",
+        "pickup",
+        "sedan",
+        "stretch limousine",
+        "hatchback"
     ]
 }
