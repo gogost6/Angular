@@ -1,0 +1,115 @@
+<form #form="ngForm" (ngSubmit)="postHandler(form)" class="formSearch">
+    <ul>
+        <li>
+            <label for="make">Make</label>
+            <select name="make" id="make" #makeSelect="ngModel" [(ngModel)]="carMake">
+                <option *ngFor="let make of jsonData.cars" [value]="make">{{make}}</option>
+            </select>
+        </li>
+
+        <li>
+            <label for="model">Model</label>
+            <ng-container *ngIf="!carMake">
+                <select name="model" id="model" disabled ngModel>
+                </select>
+            </ng-container>
+
+            <ng-container *ngIf="carMake">
+                <select name="model" id="model" ngModel>
+                    <option *ngFor="let model of cars[carMake].models" [value]="model">{{model}}</option>
+                </select>
+            </ng-container>
+        </li>
+
+        <li>
+            <label for="variant">Variant</label>
+            <input type="text" name="variant" id="variant" ngModel>
+        </li>
+        <li>
+            <label for="engine">Engine</label>
+            <select name="engine" id="engine" ngModel>
+                <option *ngFor="let engine of jsonData.engine" [value]="engine">{{engine}}</option>
+            </select>
+        </li>
+        <li>
+            <label for="condition">Condition</label>
+            <select name="condition" id="condition" ngModel>
+                <option value="new" selected="selected">New</option>
+                <option value="old">Old</option>
+                <option value="for pars">For parts</option>
+            </select>
+        </li>
+        <li>
+            <label for="horsePower">Horse Power</label>
+            <input type="text" name="horsePower" id="horsePower" ngModel>
+        </li>
+        <li>
+            <label for="gears">Gears</label>
+            <select name="gears" id="gears" ngModel>
+                <option *ngFor="let gears of jsonData.gears" [value]="gears">{{gears}}</option>
+            </select>
+        </li>
+        <li>
+            <label for="type">Car Type</label>
+            <select name="type" id="type" ngModel>
+                <option *ngFor="let type of jsonData.carType" [value]="type">{{type}}</option>
+            </select>
+        </li>
+        <li>
+            <label for="price">Price</label>
+            <input type="text" name="price" id="price" ngModel>
+        </li>
+        <li>
+            <label for="currency">Currency</label>
+            <select name="currency" id="currency" ngModel>
+                <option *ngFor="let currency of jsonData.currency" [value]="currency">{{currency}}</option>
+            </select>
+        </li>
+        <li>
+            <label for="documents">Documents</label>
+            <input class="radio" type="radio" value="true" id="true" name="documents" selected="selected" ngModel> Yes
+            <input class="radio" type="radio" value="false" id="false" name="documents" ngModel> No
+        </li>
+        <li>
+            <label for="dateMade">Date</label>
+            <input name="dateMade" id="dateMade" type="date" ngModel>
+        </li>
+        <li>
+            <label for="mileage">Mileage</label>
+            <input type="text" name="mileage" id="mileage" ngModel>
+        </li>
+        <li>
+            <label for="color">Color</label>
+            <select name="color" id="color" ngModel>
+                <option *ngFor="let color of jsonData.colors" [value]="color">{{color}}</option>
+            </select>
+        </li>
+        <li>
+            <label for="country">Country</label>
+            <select name="country" id="country" [(ngModel)]="city">
+                <option *ngFor="let country of jsonData.countries" [value]="country">{{country}}</option>
+            </select>
+        </li>
+
+        <li>
+            <label for="city">City</label>
+            <ng-container *ngIf="!city">
+                <select name="city" id="city" disabled ngModel>
+                </select>
+            </ng-container>
+
+            <ng-container *ngIf="city">
+                <select name="city" id="city" ngModel>
+                    <option *ngFor="let town of countries[city].towns" [value]="town">{{town}}</option>
+                </select>
+            </ng-container>
+        </li>
+        <li>
+            <label for="description">Description</label>
+            <input class="descr" type="text" name="description" id="description" ngModel>
+        </li>
+        <li>
+            <button>Post</button>
+        </li>
+    </ul>
+</form>
