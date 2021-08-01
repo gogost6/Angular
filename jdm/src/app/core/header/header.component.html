@@ -2,9 +2,17 @@
     <a routerLink="/home">Home</a>
     <a routerLink="/search">Search</a>
     <a routerLink="/news">Forum</a>
-    <a routerLink="/auth/login">Login</a>
-    <a routerLink="/auth/register">Register</a>
-    <a routerLink="/auth/logout">Logout</a>
-    <a routerLink="/auth/profile">Profile</a>
+
+    <ng-container *ngIf="isLogged">
+        <a routerLink="/post-car">Post car</a>
+        <a routerLink="/auth/profile">Profile</a>
+        <a (click)="logoutHandler()" routerLink="/auth/logout">Logout</a>
+    </ng-container>
+
+    <ng-container *ngIf="!isLogged">
+        <a routerLink="/auth/login">Login</a>
+        <a routerLink="/auth/register">Register</a>
+    </ng-container>
+    
     <a routerLink="/about">About us</a>
 </nav>

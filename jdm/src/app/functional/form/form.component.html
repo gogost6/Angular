@@ -1,5 +1,3 @@
-{{carMake}}
-
 <form #form="ngForm" (ngSubmit)="searchHandler(form)" class="formSearch">
     <ul>
         <li>
@@ -85,19 +83,4 @@
     </ul>
 
 </form>
-
-<div class="col-lg-2 col-md-4 mb-4">
-    <div class="card h-100">
-        <img class="card-img-top" src="" alt="car Image">
-        <div class="card-body">
-            <h5 class="card-title"><span>VW Golf</span></h5>
-            <p>Golf 4 GTI</p>
-            <h5 class="mt-4 card-info"> <span>$3500</span></h5>
-            <p>350000 km</p>
-            <p>Bulgaria</p>
-        </div>
-        <div class="card-footer">
-            <a href="" class="btn btn-primary">Details</a>
-        </div>
-    </div>
-</div>
+<app-recent></app-recent>

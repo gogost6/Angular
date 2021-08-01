@@ -5,7 +5,6 @@ module.exports = (app) => {
         mongoose.connect('mongodb://localhost:27017/jdm', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            
         });
         mongoose.set('useFindAndModify', false)
     

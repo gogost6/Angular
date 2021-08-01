@@ -1,7 +1,7 @@
 const Auto = require('../models/Auto');
 const User = require('../models/User');
 
-async function getAll(name) {
+async function getAll() {
     const autos = Auto.find({}).lean();
     return autos;
 }

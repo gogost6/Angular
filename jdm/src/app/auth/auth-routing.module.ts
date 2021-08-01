@@ -8,10 +8,6 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
     {
-        path: 'auth/logout',
-        redirectTo: '/home'
-    },
-    {
         path: 'auth/login',
         component: LoginComponent
     },
@@ -22,6 +18,11 @@ const routes: Routes = [
     {
         path: 'auth/profile',
         component: ProfileComponent
+    },
+    {
+        path: 'auth/logout',
+        pathMatch: 'full',
+        redirectTo: '/home'
     }
 ];
 

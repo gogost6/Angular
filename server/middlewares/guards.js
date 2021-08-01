@@ -1,35 +1,37 @@
-function isAuth() {
-    return (req, res, next) => {
-        if (res.locals.user != undefined) {
-            next();
-        } else {
-            res.redirect('/user/login');
-        }
-    };
-}
 
-function isGuest() {
-    return (req, res, next) => {
-        if (res.locals.user == undefined) {
-            next();
-        } else {
-            res.redirect('/tutorials');
-        }
-    };
-}
 
-function isOwner() {
-    return (req, res, next) => {
-        if (req.data.trip && req.user && (req.data.trip.owner.email == res.locals.user.email)) {
-            next();
-        } else {
-            res.redirect('/user/login');
-        }
-    };
-}
+// function isOwner() {
+//     return (req, res, next) => {
+//         if (req.data.trip && req.user && (req.data.trip.owner.email == res.locals.user.email)) {
+//             next();
+//         } else {
+//             res.status(400);
+//         }
+//     };
+// }
 
 module.exports = {
-    isAuth,
-    isGuest,
-    isOwner
+    isAuth() {
+        return (req, res, next) => {
+            console.log('->> before auth guard');
+            console.log(req.cookies["SESSION_DATA"]);
+            console.log('->> after auth guard');
+    
+            if (req.user) {
+                next();
+            } else {
+                res.status(400);
+            }
+        };
+    },
+    isGuest() {
+        return (req, res, next) => {
+            console.log(req.user)
+            if (!req.user) {
+                next();
+            } else {
+                res.status(400);
+            }
+        };
+    }
 };

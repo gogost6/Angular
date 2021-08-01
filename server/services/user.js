@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 async function createUser(email, username, hashedPassword) {
     const user = new User({
@@ -24,7 +26,8 @@ async function getUserByEmail(email) {
 async function getUserByUsername(username) {
     const pattern = new RegExp(`^${username}$`, 'i');
     if(username) {
-        return await User.findOne({ username: { $regex: pattern } }).lean();
+        const user = await User.findOne({ username: { $regex: pattern } }).lean();
+        return user;
     } else {
         return false;
     }

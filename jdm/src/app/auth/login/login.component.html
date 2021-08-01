@@ -4,16 +4,16 @@
         <p>Please fill all fields.</p>
     </div>
 </div>
-<form>
+<form #form="ngForm" (ngSubmit)="loginHandler(form)">
     <div class="row space-top">
         <div class="col-md-4">
             <div class="form-group">
                 <label class="form-control-label" for="username">Username</label>
-                <input class="form-control" id="username" type="text" name="username">
+                <input class="form-control" id="username" type="text" name="username" ngModel>
             </div>
             <div class="form-group">
                 <label class="form-control-label" for="password">Password</label>
-                <input class="form-control" id="password" type="password" name="password">
+                <input class="form-control" id="password" type="password" name="password" ngModel>
             </div>
             <input type="submit" class="btn btn-primary" value="Login" />
         </div>

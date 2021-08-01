@@ -6,4 +6,5 @@ export interface IData {
     gears: string[];
     colors: string[];
     carType: string[];
+    currency: string[];
 }

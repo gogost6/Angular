@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './core/about/about.component';
 import { FormComponent } from './functional/form/form.component';
 import { NewsComponent } from './functional/news/news.component';
+import { PostCarComponent } from './functional/post-car/post-car.component';
 import { SearchComponent } from './functional/search/search.component';
 
 const routes: Routes = [
@@ -26,7 +27,16 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
-  }
+  },
+  {
+    path: 'post-car',
+    component: PostCarComponent
+  },
+  {
+    path: 'auth/logout',
+    pathMatch: 'full',
+    redirectTo: '/home'
+  },
 ];
 
 @NgModule({
