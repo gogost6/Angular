@@ -39,7 +39,10 @@ export class UserService {
         return user;
       }))
       .subscribe(
-        (response) => console.log(response),
+        (response) => { 
+          console.log(response);
+          this.router.navigate(['/']); 
+        },
         (error) => console.log(error)
       );
   }
