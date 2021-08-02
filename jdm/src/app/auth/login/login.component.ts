@@ -11,13 +11,12 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginComponent {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService) { }
 
   loginHandler(form: NgForm): void {
     if (form.invalid) { throw new Error('Invalid form!'); }
     console.log(form.value);
     const {username, password} = form.value;
     this.userService.login(username, password);
-    this.router.navigateByUrl('/');
   }
 }
