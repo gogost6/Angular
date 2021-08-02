@@ -6,8 +6,17 @@ async function getAll() {
     return autos;
 }
 
+async function getCarsByCriteria(data) {
+    //{make = 'any', model = 'any', maxPrice = 'any', minPrice = 'any', country = 'any', city = 'any', year = 'any', engine = 'any', gears = 'any'}
+    //let criteria = data.entries().map(x => x[1] !== 'any');
+    console.log(data)
+    // const autos = Auto.find({ make }).lean();
+    // return autos;
+}
+
 async function create(auto, email) {
     let user = await User.findOne({ email });
+    console.log(user);
     const record = new Auto(auto);
     await record.save();
     user.createdAutos.push(record);
@@ -38,5 +47,6 @@ module.exports = {
     getAll,
     getById,
     edit,
-    deleteAuto
+    deleteAuto,
+    getCarsByCriteria
 }

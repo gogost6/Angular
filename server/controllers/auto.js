@@ -49,14 +49,22 @@ router.post('/post-car', isAuth(),
             if (errors.length > 0) {
                 throw new Error(errors.map(e => e.msg).join('\n'));
             }
-            //const carData = await req.storage.create(req.body);
-            
-            //res.json(carData);
+            const carData = await req.storage.create(req.body, req.user.email);
+            res.json(carData);
         } catch (err) {
-            console.log(req.user)
             console.log(err);
-            res.status(403).end();
+            res.status(403).json({});
         }
     });
 
+router.get('/get-cars', async (req, res) => {
+    try {
+        const searchResults = await req.storage.getCarsByCriteria(req.body);
+        console.log(searchResults);
+        res.json(searchResults);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({message: 'Error'});
+    }
+})
 module.exports = router;

@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 
-const { COOKIE_NAME, TOKEN_SECRET } = require('../config');
+const { COOKIE_NAME, TOKEN_SECRET, COOKIE_DOMAIN } = require('../config');
 const { isAuth, isGuest } = require('../middlewares/guards');
 const userService = require('../services/user');
 
@@ -92,7 +92,7 @@ router.post('/login',
                     const userViewModel = { _id: user._id, email: user.email, username: user.username, };
                     const token = jwt.sign(userViewModel, TOKEN_SECRET);
                     console.log('this is the token ->> ' + token);
-                    res.cookie(COOKIE_NAME, token, { secure:false, httpOnly: true });
+                    res.cookie(COOKIE_NAME, token, { httpOnly: true, sameSite: 'Lax' });
                     console.log('this is the cookie ->> ' + req.cookies[COOKIE_NAME]);
                     res.json(userViewModel);
                 }
@@ -104,8 +104,7 @@ router.post('/login',
     });
 
 router.get('/logout', (req, res) => {
-    res.clearCookie(COOKIE_NAME);
-    res.status(204).json({});
+    res.clearCookie(COOKIE_NAME).status(204).json({message: 'Logged out!'});
 })
 
 module.exports = router;

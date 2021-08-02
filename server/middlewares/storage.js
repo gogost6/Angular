@@ -1,5 +1,4 @@
 const auto = require('../services/auto');
-const user = require('../services/user');
 
 async function init() {
     return (req, res, next) => {
