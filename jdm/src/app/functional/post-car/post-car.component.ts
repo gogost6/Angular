@@ -26,9 +26,7 @@ export class PostCarComponent {
   constructor(private http: HttpClient) { }
 
   postHandler(form: NgForm) {
-    console.log("TOVA E OT ANGULAR" + form.value);
-
-    this.http.post<any>(`${environment.apiUrl}/auto/post-car`, form.value)
+    this.http.post<any>(`${environment.apiUrl}/auto/post-car`, form.value, { withCredentials: true })
     .subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
