@@ -1,0 +1,19 @@
+<ng-container *ngFor="let car of searchCars">
+    <div class="container">
+        <div>{{car.make}} {{car.model}}</div>
+        <div>
+            <span class="price">{{car.price}} {{car.currency}}</span>
+        </div>
+        <div>
+            LIKE
+        </div>
+        <ul>
+           <li> Date made: {{car.dateMade.slice(0, 10)}}</li>
+           <li> Mileage: {{car.mileage}}</li>
+           <li> Color: {{car.color}}</li>
+           <li> Location: {{car.country}}, {{car.city}}</li>
+        </ul>
+    </div>
+    <div class="space"></div>
+</ng-container>
+
