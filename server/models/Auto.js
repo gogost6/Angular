@@ -1,6 +1,7 @@
 const { model, Schema } = require('mongoose');
 
 const schema = {
+    imageUrls: { type: Array },
     condition: { type: String, required: true },
     documents: { type: String, required: true },
     type: { type: String, required: true },
@@ -18,6 +19,7 @@ const schema = {
     gears: { type: String, required: true },
     horsePower: { type: Number, required: true },
     color: { type: String, required: true },
+    date: { type: Date, default: Date.now() },
     // features: {
     //     interior: [{ type: String }],
     //     security: [{ type: String }],
