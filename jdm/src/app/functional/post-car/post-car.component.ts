@@ -13,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 
+import { UploadService } from '../../services/upload.service';
+
 @Component({
   selector: 'app-post-car',
   templateUrl: './post-car.component.html',
@@ -25,7 +27,9 @@ export class PostCarComponent {
   carMake: string = "";
   city: string = "";
   // in app.component.ts
+  imageUrl!: string;
   files: File[] = [];
+  public isButtonVisible = true;
 
   private async readFile(file: File): Promise<string | ArrayBuffer> {
     return new Promise<any>((resolve, reject) => {
@@ -49,10 +53,31 @@ export class PostCarComponent {
     });
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private uploadService: UploadService) { }
+
+  uploadPhotos(event: any) {
+    event.preventDefault();
+    if (!this.files[0]) {
+      console.log('No photos to upload');
+    }
+
+    const file_data = this.files[0];
+    const data = new FormData();
+    data.append('file', file_data);
+    data.append('upload_preset', 'angular_cloudinary');
+    data.append('cloud_name', 'dyjdf3jmx');
+
+    this.uploadService.uploadImage(data).subscribe((response) =>{
+      if(response) {
+        this.imageUrl = response.url;
+        this.isButtonVisible = false;
+      }
+    })
+  }
 
   postHandler(form: NgForm) {
-    this.http.post<any>(`${environment.apiUrl}/auto/post-car`, form.value, { withCredentials: true })
+    let body = Object.assign(form.value, {imgUrl: this.imageUrl});
+    this.http.post<any>(`${environment.apiUrl}/auto/post-car`, body, { withCredentials: true })
       .subscribe(
         (response) => {
           console.log(response);
@@ -71,7 +96,7 @@ export class PostCarComponent {
   onFilesAdded(event: any) {
     console.log(event);
     this.files.push(...event.addedFiles);
-  
+
     this.readFile(this.files[0]).then(fileContents => {
       // Put this string in a request body to upload it to an API.
       console.log(fileContents);
