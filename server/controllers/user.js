@@ -104,7 +104,7 @@ router.post('/login',
     });
 
 router.get('/logout', (req, res) => {
-    res.clearCookie(COOKIE_NAME).status(204).json({message: 'Logged out!'});
+    res.clearCookie(COOKIE_NAME).status(200).end();
 })
 
 module.exports = router;
