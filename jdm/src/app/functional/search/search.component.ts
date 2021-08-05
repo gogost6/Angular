@@ -8,6 +8,9 @@ import * as countries from '../../../assets/countries.json';
 import { IData } from '../../shared/interfaces/data';
 import { ICars } from 'src/app/shared/interfaces/cars';
 import { ICountries } from 'src/app/shared/interfaces/countries';
+
+import { SharedService } from '../../services/shared.service'
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -20,11 +23,10 @@ export class SearchComponent {
   carMake: string = "";
   city: string = "";
 
-  constructor() { }
-
-  postHandler(form: any) {
-    console.log(form);
-    
+  get searchCars() {
+    return this.sharedService.getData;
   }
+
+  constructor(private sharedService: SharedService) { }
 
 }

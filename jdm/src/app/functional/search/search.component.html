@@ -1,0 +1,14 @@
+<div class="h">
+    <a routerLink="/home">New search</a>
+    <div *ngIf="searchCars.length == 0">0 cars found</div>
+    <div *ngIf="searchCars.length > 1">{{searchCars.length}} cars found</div>
+    <div *ngIf="searchCars.length == 1">{{searchCars.length}} car found</div>
+
+    <ul class="algright">
+        <span class="pageNumbersDisable"></span>
+        <span class="pageNumbersSelect"></span>
+        <span class="pageNumbersDisable"></span>
+    </ul>
+</div>
+
+<app-car></app-car>
