@@ -43,7 +43,7 @@
         <li>
             <label for="city">City</label>
             <ng-container *ngIf="!city">
-                <select name="city" id="city" disabled ngModel>
+                <select name="city" id="city" disabled>
                     <option value="">Any</option>
                 </select>
             </ng-container>
@@ -57,8 +57,8 @@
         </li>
 
         <li>
-            <label for="yearMade">Year</label>
-            <select name="yearMade" id="yearMade" ngModel>
+            <label for="dateMade">Year</label>
+            <select name="dateMade" id="dateMade" ngModel>
                 <option value="" selected="selected">Any</option>
                 <option *ngFor="let year of jsonData.years" [value]="year">{{year}}</option>
             </select>
