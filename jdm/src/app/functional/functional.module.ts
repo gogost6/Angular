@@ -10,6 +10,7 @@ import { RecentComponent } from './recent/recent.component';
 import { SearchComponent } from './search/search.component';
 import { PostCarComponent } from './post-car/post-car.component';
 import { CarComponent } from './car/car.component';
+import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CarComponent } from './car/car.component';
     RecentComponent,
     SearchComponent,
     PostCarComponent,
-    CarComponent
+    CarComponent,
+    DetailsComponent
   ],
   imports: [
     CommonModule,
