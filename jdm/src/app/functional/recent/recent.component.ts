@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchService } from 'src/app/services/search.service';
-import { ICar } from 'src/app/shared/interfaces/car';
+
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-recent',

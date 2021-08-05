@@ -7,11 +7,10 @@ import * as cars from '../../../assets/cars.json';
 import * as countries from '../../../assets/countries.json';
 
 import { IData } from '../../shared/interfaces/data';
-import { ICars } from 'src/app/shared/interfaces/cars';
-import { ICountries } from 'src/app/shared/interfaces/countries';
+import { ICars } from '../../shared/interfaces/cars';
+import { ICountries } from '../../shared/interfaces/countries';
 import { SearchService } from '../../services/search.service'
 import { SharedService } from '../../services/shared.service'
-import { ICar } from 'src/app/shared/interfaces/car';
 
 @Component({
   selector: 'app-form',

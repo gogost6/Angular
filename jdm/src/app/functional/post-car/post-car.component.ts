@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import * as data from '../../../assets/data.json';
 import * as cars from '../../../assets/cars.json';
 import * as countries from '../../../assets/countries.json';
 
 import { IData } from '../../shared/interfaces/data';
-import { ICars } from 'src/app/shared/interfaces/cars';
-import { ICountries } from 'src/app/shared/interfaces/countries';
+import { ICars } from '../../shared/interfaces/cars';
+import { ICountries } from '../../shared/interfaces/countries';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '../../../environments/environment'
-import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-post-car',
   templateUrl: './post-car.component.html',

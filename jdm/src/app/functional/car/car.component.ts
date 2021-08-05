@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from 'src/app/services/shared.service';
-import { ICar } from 'src/app/shared/interfaces/car';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-car',
