@@ -50,6 +50,7 @@ router.post('/post-car', isAuth(),
                 throw new Error(errors.map(e => e.msg).join('\n'));
             }
             const carData = await req.storage.create(req.body, req.user.email);
+            console.log('Successfully added car to the db!');
             res.json(carData);
         } catch (err) {
             console.log(err);
@@ -57,10 +58,19 @@ router.post('/post-car', isAuth(),
         }
     });
 
-router.get('/get-cars', async (req, res) => {
+router.post('/search-cars', async (req, res) => {
     try {
         const searchResults = await req.storage.getCarsByCriteria(req.body);
-        console.log(searchResults);
+        res.json(searchResults);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({message: 'Error'});
+    }
+});
+
+router.get('/recent-cars', async (req, res) => {
+    try {
+        const searchResults = await req.storage.getRecent();
         res.json(searchResults);
     } catch (err) {
         console.log(err);
