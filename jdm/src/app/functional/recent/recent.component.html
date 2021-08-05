@@ -2,16 +2,16 @@
 
 <ng-container class="col-lg-2 col-md-4 mb-4" *ngFor="let car of recentCars">
     <div class="car">
-        <img class="card-img-top" src="" alt="car Image">
+        <img class="img" src="{{car.imgUrl}}" alt="car Image">
         <div>
             <h5><span>{{car.make}}</span></h5>
             <p>{{car.model}} {{car.variant}}</p>
-            <h5> <span>{{car.price}}</span></h5>
+            <h5> <span>{{car.price}} {{car.currency}}</span></h5>
             <p>{{car.mileage}} km</p>
             <p>{{car.country}}, {{car.city}}</p>
         </div>
         <div>
-            <a (click)="showDetails(car._id)">Details</a>
+            <a [routerLink]="['/details', car._id]">Details</a>
         </div>
     </div>
 </ng-container>
