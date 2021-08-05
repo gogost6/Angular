@@ -6,17 +6,34 @@ async function getAll() {
     return autos;
 }
 
+async function getRecent() {
+    const autos = Auto.find({}).sort({ date: -1 }).limit(3).lean();
+    return autos;
+}
+
 async function getCarsByCriteria(data) {
-    //{make = 'any', model = 'any', maxPrice = 'any', minPrice = 'any', country = 'any', city = 'any', year = 'any', engine = 'any', gears = 'any'}
-    //let criteria = data.entries().map(x => x[1] !== 'any');
+    let obj = {};
     console.log(data)
-    // const autos = Auto.find({ make }).lean();
-    // return autos;
+    let criteria = Object.entries(data).filter(x => x[1] !== '').forEach(x => {
+        if(x[0] == 'minPrice' || x[0] == 'maxPrice') {
+            obj.price = {};
+        }
+        if (x[0] == 'dateMade') {
+            obj[x[0]] = { $gte: new Date(x[1].slice(6)) };
+        } else if (x[0] == 'minPrice') {
+            Object.assign(obj.price, { $gte: Number(x[1]) });
+        } else if (x[0] == 'maxPrice') {
+            Object.assign(obj.price, { $lt: Number(x[1]) });
+        } else {
+            obj[x[0]] = x[1];
+        }
+    });
+    const autos = Auto.find(obj).lean();
+    return autos;
 }
 
 async function create(auto, email) {
     let user = await User.findOne({ email });
-    console.log(user);
     const record = new Auto(auto);
     await record.save();
     user.createdAutos.push(record);
@@ -48,5 +65,6 @@ module.exports = {
     getById,
     edit,
     deleteAuto,
-    getCarsByCriteria
+    getCarsByCriteria,
+    getRecent
 }
