@@ -77,4 +77,14 @@ router.get('/recent-cars', async (req, res) => {
         res.status(400).json({message: 'Error'});
     }
 })
+
+router.get('/details/:id', async (req, res) => {
+    try {
+        const searchResult = await req.storage.getById(req.params.id);
+        res.json(searchResult);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({message: 'Error'});
+    }
+})
 module.exports = router;
