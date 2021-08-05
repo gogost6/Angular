@@ -39,9 +39,9 @@ export class UserService {
         return user;
       }))
       .subscribe(
-        (response) => { 
+        (response) => {
           console.log(response);
-          this.router.navigate(['/']); 
+          this.router.navigate(['/']);
         },
         (error) => console.log(error)
       );
@@ -49,7 +49,7 @@ export class UserService {
 
   logout() {
     // remove user from local storage and set current user to null
-    this.http.get<any>(`${environment.apiUrl}/user/logout`)
+    this.http.get<any>(`${environment.apiUrl}/user/logout`, { withCredentials: true })
       .subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
