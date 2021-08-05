@@ -1,17 +1,17 @@
-<p>Recent added cars:</p>
+<p>Recently added cars:</p>
 
-<div class="col-lg-2 col-md-4 mb-4">
-    <div>
+<ng-container class="col-lg-2 col-md-4 mb-4" *ngFor="let car of recentCars">
+    <div class="car">
         <img class="card-img-top" src="" alt="car Image">
         <div>
-            <h5><span>VW Golf</span></h5>
-            <p>Golf 4 GTI</p>
-            <h5> <span>$3500</span></h5>
-            <p>350000 km</p>
-            <p>Bulgaria</p>
+            <h5><span>{{car.make}}</span></h5>
+            <p>{{car.model}} {{car.variant}}</p>
+            <h5> <span>{{car.price}}</span></h5>
+            <p>{{car.mileage}} km</p>
+            <p>{{car.country}}, {{car.city}}</p>
         </div>
         <div>
-            <a href="">Details</a>
+            <a (click)="showDetails(car._id)">Details</a>
         </div>
     </div>
-</div>
+</ng-container>
