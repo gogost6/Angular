@@ -109,7 +109,15 @@
             <input class="descr" type="text" name="description" id="description" ngModel>
         </li>
         <li>
-            <button>Post</button>
+            <ngx-dropzone class="dropzone" (change)="onFilesAdded($event)" accept="image/jpeg,image/jpg,image/png,image/gif">
+                <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </ngx-dropzone>
+        </li>
+        <li>
+            <button class="btn">Post</button>
         </li>
     </ul>
 </form>
