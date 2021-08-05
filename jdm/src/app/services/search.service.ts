@@ -18,6 +18,10 @@ export class SearchService {
     return this.http.post<ICar[]>(`${environment.apiUrl}/auto/search-cars`, data, { withCredentials: true })
   }
 
+  details(id: string | null) {
+    return this.http.get<any>(`${environment.apiUrl}/auto/details/${id}`, { withCredentials: true })
+  }
+
   recent(): Observable<ICar> {
     return this.http.get<ICar>(`${environment.apiUrl}/auto/recent-cars`);
   }

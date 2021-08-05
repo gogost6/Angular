@@ -19,6 +19,10 @@ export class UserService {
     return localStorage.getItem('user') !== null ? true : false;
   }
 
+  get userData(): any | null {
+    return localStorage.getItem('user');
+  }
+
   constructor(
     private router: Router,
     private http: HttpClient,
