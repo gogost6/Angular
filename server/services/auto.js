@@ -15,7 +15,7 @@ async function getCarsByCriteria(data) {
     let obj = {};
     console.log(data)
     let criteria = Object.entries(data).filter(x => x[1] !== '').forEach(x => {
-        if(x[0] == 'minPrice' || x[0] == 'maxPrice') {
+        if (x[0] == 'minPrice' || x[0] == 'maxPrice') {
             obj.price = {};
         }
         if (x[0] == 'dateMade') {
@@ -34,6 +34,7 @@ async function getCarsByCriteria(data) {
 
 async function create(auto, email) {
     let user = await User.findOne({ email });
+    Object.assign(auto, { owner: user });
     const record = new Auto(auto);
     await record.save();
     user.createdAutos.push(record);
