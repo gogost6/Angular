@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+
 import { UserService } from '../../services/user.service';
 
 
@@ -14,7 +15,6 @@ export class RegisterComponent {
 
   registerHandler(form: NgForm): void {
     if (form.invalid) { throw new Error('Invalid form!'); }
-    console.log(form.value);
     this.userService.register(form.value);
   }
 }

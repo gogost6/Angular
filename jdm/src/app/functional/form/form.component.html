@@ -1,86 +1,99 @@
-<form #form="ngForm" (ngSubmit)="searchHandler(form)" class="formSearch">
-    <ul>
-        <li>
+<form #form="ngForm" (ngSubmit)="searchHandler(form)" class="form-control" style="width: 800px; margin: 0 auto;">
+    <div class="row">
+        <div class="col">
             <label for="make">Make</label>
-            <select name="make" id="make" #makeSelect="ngModel" [(ngModel)]="carMake">
+            <select class="form-select" name="make" id="make" #makeSelect="ngModel" [(ngModel)]="carMake">
                 <option value="" selected="selected">Any</option>
                 <option *ngFor="let make of jsonData.cars" [value]="make">{{make}}</option>
             </select>
-        </li>
+        </div>
 
-        <li>
+        <div class="col">
             <label for="model">Model</label>
             <ng-container *ngIf="!carMake">
-                <select name="model" id="model" disabled ngModel>
+                <select class="form-select" name="model" id="model" disabled ngModel>
                     <option value="">Any</option>
                 </select>
             </ng-container>
 
             <ng-container *ngIf="carMake">
-                <select name="model" id="model" ngModel>
+                <select class="form-select" name="model" id="model" ngModel>
                     <option value="">Any</option>
                     <option *ngFor="let model of cars[carMake].models" [value]="model">{{model}}</option>
                 </select>
             </ng-container>
-        </li>
+        </div>
+        <div class="col">
+            <label for="model">Model</label>
+            <ng-container *ngIf="!carMake">
+                <select class="form-select" name="model" id="model" disabled ngModel>
+                    <option value="">Any</option>
+                </select>
+            </ng-container>
 
-        <li>
+            <ng-container *ngIf="carMake">
+                <select class="form-select" name="model" id="model" ngModel>
+                    <option value="">Any</option>
+                    <option *ngFor="let model of cars[carMake].models" [value]="model">{{model}}</option>
+                </select>
+            </ng-container>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
             <label for="maxPrice">Max price</label>
-            <input type="text" name="maxPrice" id="maxPrice" ngModel>
-        </li>
-        <li>
-            <label for="minPrice">Min price</label>
-            <input type="text" name="minPrice" ngModel>
-        </li>
-        <li>
+            <input class="form-control" type="text" name="maxPrice" id="maxPrice" ngModel>
+        </div>
+        <div class="col-md-auto">
             <label for="country">Country</label>
-            <select name="country" id="country" [(ngModel)]="city">
+            <select class="form-select" name="country" id="country" [(ngModel)]="city">
                 <option value="" selected>Any</option>
                 <option *ngFor="let country of jsonData.countries" [value]="country">{{country}}</option>
             </select>
-        </li>
-
-        <li>
+        </div>
+        <div class="col col-lg-2">
             <label for="city">City</label>
             <ng-container *ngIf="!city">
-                <select name="city" id="city" disabled>
+                <select class="form-select" name="city" id="city" disabled>
                     <option value="">Any</option>
                 </select>
             </ng-container>
 
             <ng-container *ngIf="city">
-                <select name="city" id="city" ngModel>
+                <select class="form-select" name="city" id="city" ngModel>
                     <option value="">Any</option>
                     <option *ngFor="let town of countries[city].towns" [value]="town">{{town}}</option>
                 </select>
             </ng-container>
-        </li>
+        </div>
+    </div>
 
-        <li>
+    <div class="row">
+        <div class="col">
             <label for="dateMade">Year</label>
-            <select name="dateMade" id="dateMade" ngModel>
+            <select class="form-select" name="dateMade" id="dateMade" ngModel>
                 <option value="" selected="selected">Any</option>
                 <option *ngFor="let year of jsonData.years" [value]="year">{{year}}</option>
             </select>
-        </li>
-        <li>
+        </div>
+        <div class="col">
             <label for="engine">Engine</label>
-            <select name="engine" id="engine" ngModel>
+            <select class="form-select" name="engine" id="engine" ngModel>
                 <option value="" selected="selected">Any</option>
                 <option *ngFor="let engine of jsonData.engine" [value]="engine">{{engine}}</option>
             </select>
-        </li>
-        <li>
+        </div>
+        <div class="col">
             <label for="gears">Gears</label>
-            <select name="gears" id="gears" ngModel>
+            <select class="form-select" name="gears" id="gears" ngModel>
                 <option value="" selected="selected">Any</option>
                 <option *ngFor="let gears of jsonData.gears" [value]="gears">{{gears}}</option>
             </select>
-        </li>
-        <li>
-            <button>Search</button>
-        </li>
-    </ul>
+        </div>
+    </div>
+
+    <button class="btn btn-primary">Search</button>
 
 </form>
 <app-recent></app-recent>

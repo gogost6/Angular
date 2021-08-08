@@ -13,10 +13,6 @@
 module.exports = {
     isAuth() {
         return (req, res, next) => {
-            console.log('->> before auth guard');
-            console.log(req.cookies["SESSION_DATA"]);
-            console.log('->> after auth guard');
-    
             if (req.user) {
                 next();
             } else {
@@ -26,7 +22,6 @@ module.exports = {
     },
     isGuest() {
         return (req, res, next) => {
-            console.log(req.user)
             if (!req.user) {
                 next();
             } else {

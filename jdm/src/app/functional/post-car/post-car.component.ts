@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 import { UploadService } from '../../services/upload.service';
+import { CarService } from '../../services/car.service';
 
 @Component({
   selector: 'app-post-car',
@@ -53,7 +54,12 @@ export class PostCarComponent {
     });
   }
 
-  constructor(private http: HttpClient, private router: Router, private uploadService: UploadService) { }
+  constructor(
+    private http: HttpClient, 
+    private router: Router, 
+    private uploadService: UploadService,
+    private carService: CarService
+    ) { }
 
   uploadPhotos(event: any) {
     event.preventDefault();
@@ -77,7 +83,7 @@ export class PostCarComponent {
 
   postHandler(form: NgForm) {
     let body = Object.assign(form.value, {imgUrl: this.imageUrl});
-    this.http.post<any>(`${environment.apiUrl}/auto/post-car`, body, { withCredentials: true })
+    this.carService.post(body)
       .subscribe(
         (response) => {
           console.log(response);

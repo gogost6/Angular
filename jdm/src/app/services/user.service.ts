@@ -38,7 +38,6 @@ export class UserService {
   login(username: string, password: string) {
     return this.http.post<IUser>(`${environment.apiUrl}/user/login`, { username, password }, { withCredentials: true })
       .pipe(map(user => {
-        console.log(user)
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
@@ -46,7 +45,6 @@ export class UserService {
       }))
       .subscribe(
         (response) => {
-          console.log(response);
           this.router.navigate(['/']);
         },
         (error) => console.log(error)
@@ -57,7 +55,6 @@ export class UserService {
     // remove user from local storage and set current user to null
     this.http.get<any>(`${environment.apiUrl}/user/logout`, { withCredentials: true })
       .subscribe(
-        (response) => console.log(response),
         (error) => console.log(error)
       );
     localStorage.removeItem('user');
@@ -75,7 +72,6 @@ export class UserService {
         }))
       .subscribe(
         (response) => {
-          console.log(response)
           this.router.navigate(['/home']);
         },
         (error) => console.log(error)

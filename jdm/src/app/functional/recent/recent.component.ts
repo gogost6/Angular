@@ -14,8 +14,7 @@ export class RecentComponent {
   constructor(private searchService: SearchService, private router: Router) { 
     this.searchService.recent().subscribe(
       car => this.recentCars = car
-    );;
-    console.log(this.recentCars)
+    );
   }
 
   showDetails(carId: any) {

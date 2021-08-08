@@ -1,8 +1,8 @@
-<p>Recently added cars:</p>
+<p class="fs-5">Recently added cars:</p>
 
 <ng-container class="col-lg-2 col-md-4 mb-4" *ngFor="let car of recentCars">
-    <div class="car">
-        <img class="img" src="{{car.imgUrl}}" alt="car Image">
+    <div class="card-body" style="width: 18rem; display: inline-block;">
+        <img class="img" class="card-img-top" src="{{car.imgUrl}}" alt="car Image">
         <div>
             <h5><span>{{car.make}}</span></h5>
             <p>{{car.model}} {{car.variant}}</p>
@@ -11,7 +11,7 @@
             <p>{{car.country}}, {{car.city}}</p>
         </div>
         <div>
-            <a [routerLink]="['/details', car._id]">Details</a>
+            <a [routerLink]="['/details', car._id]" class="btn btn-primary">Details</a>
         </div>
     </div>
 </ng-container>

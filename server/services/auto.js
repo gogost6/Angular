@@ -1,5 +1,6 @@
 const Auto = require('../models/Auto');
 const User = require('../models/User');
+const mongoose = require('mongoose');
 
 async function getAll() {
     const autos = Auto.find({}).lean();
@@ -51,12 +52,22 @@ async function edit(id, data) {
     return record.save();
 }
 
-async function deleteAuto(id) {
-    await Auto.findByIdAndRemove({ _id: id }, (err) => {
-        if (err) {
-            throw new Error(err);
+async function deleteAuto(id, userId) {
+    console.log(id, userId)
+    const record = await User.findOneAndUpdate(
+        { _id: userId }, { "$pull": { "createdAutos": new mongoose.mongo.ObjectId(id) } },
+        { safe: true, multi: true, new: true });
+    await record.save();
+    Auto.findByIdAndRemove({ _id: id }, (err, docs) => {
+        try {
+            if (err) {
+                throw new Error(err);
+            } else {
+                console.log("Successful deletion " + docs);
+            }
+        } catch (err) {
+            console.log('Wrong data!');
         }
-        console.log("Successful deletion");
     });
 }
 

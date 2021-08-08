@@ -22,6 +22,10 @@ router.post('/register', isGuest(),
         .withMessage('The username should contain only chars!')
         .isLength({ min: 5 })
         .withMessage('The username should be atleast 5 chars!'),
+    body('telephone')
+        .trim()
+        .isNumeric()
+        .withMessage('The telephone input should contain only numbers!'),
     body('password')
         .trim()
         .isLength({ min: 4 })
@@ -34,13 +38,16 @@ router.post('/register', isGuest(),
     }),
     async (req, res) => {
         try {
-            const { email, username, password } = req.body;
+            const { email, username, telephone, password } = req.body;
             const errors = Object.values(validationResult(req).mapped());
+
             if (errors.length > 0) {
                 throw new Error(errors.map(e => e.msg).join('\n'));
             }
+
             const existingByEmail = await userService.getUserByEmail(email);
             const existingByUsername = await userService.getUserByUsername(username);
+            const existingByTelephone = await userService.getUserByTelephone(telephone);
 
             if (existingByEmail) {
                 throw new Error('Email is registered already');
@@ -50,11 +57,16 @@ router.post('/register', isGuest(),
                 throw new Error('Username is taken!');
             }
 
-            const hashedPassword = await bcrypt.hash(password, 10);
-            const user = await userService.createUser(email, username, hashedPassword);
+            if (existingByTelephone) {
+                throw new Error('Telephone is being used by other user!');
+            }
 
-            const userViewModel = { _id: user._id, email: user.email, username: user.username, };
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const user = await userService.createUser(email, username, telephone, hashedPassword);
+
+            const userViewModel = { _id: user._id, email: user.email, username: user.username, telephone: user.telephone, };
             const token = jwt.sign(userViewModel, TOKEN_SECRET);
+
             res.cookie(COOKIE_NAME, token, { httpOnly: true });
             res.json(userViewModel);
         } catch (err) {
@@ -91,9 +103,7 @@ router.post('/login',
                 } else {
                     const userViewModel = { _id: user._id, email: user.email, username: user.username, };
                     const token = jwt.sign(userViewModel, TOKEN_SECRET);
-                    console.log('this is the token ->> ' + token);
                     res.cookie(COOKIE_NAME, token, { httpOnly: true, sameSite: 'Lax' });
-                    console.log('this is the cookie ->> ' + req.cookies[COOKIE_NAME]);
                     res.json(userViewModel);
                 }
             }

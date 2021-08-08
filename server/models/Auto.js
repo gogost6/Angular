@@ -8,6 +8,7 @@ const schema = {
     model: { type: String, required: true },
     dateMade: { type: Date, required: true },
     variant: { type: String },
+    engine: { type: String },
     country: { type: String, required: true },
     mileage: { type: Number, required: true },
     city: { type: String, required: true },
@@ -20,6 +21,11 @@ const schema = {
     color: { type: String, required: true },
     date: { type: Date, default: Date.now() },
     imgUrl: { type: String },
+    owner: { type: Schema.Types.ObjectId, ref: 'User' },
+}
+
+module.exports = model('Auto', schema);
+
     // features: {
     //     interior: [{ type: String }],
     //     security: [{ type: String }],
@@ -27,7 +33,3 @@ const schema = {
     //     exterior: [{ type: String }],
     //     other: [{ type: String }]
     // },
-    owner: { type: Schema.Types.ObjectId, ref: 'User' },
-}
-
-module.exports = model('Auto', schema);

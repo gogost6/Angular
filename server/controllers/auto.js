@@ -44,7 +44,6 @@ router.post('/post-car', isAuth(),
         .withMessage('The description should not be empty!'),
     async (req, res) => {
         try {
-            console.log(req.user + 'at controller');
             const errors = Object.values(validationResult(req).mapped());
             if (errors.length > 0) {
                 throw new Error(errors.map(e => e.msg).join('\n'));
@@ -82,6 +81,17 @@ router.get('/details/:id', async (req, res) => {
     try {
         const searchResult = await req.storage.getById(req.params.id);
         res.json(searchResult);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({message: 'Error'});
+    }
+});
+
+router.get('/delete/:id', async (req, res) => {
+    try {
+        console.log('here')
+        await req.storage.deleteAuto(req.params.id, req.user._id);
+        res.json({});
     } catch (err) {
         console.log(err);
         res.status(400).json({message: 'Error'});

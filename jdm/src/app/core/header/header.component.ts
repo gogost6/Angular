@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { UserService } from '../../services/user.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   get isLogged(): boolean {
     return this.userService.isLogged;
   }
@@ -17,7 +17,4 @@ export class HeaderComponent implements OnInit {
     this.userService.logout();
   }
 
-  ngOnInit(): void {
-    console.log(this.isLogged);
-  }
 }

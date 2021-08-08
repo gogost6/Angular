@@ -1,17 +1,17 @@
-<nav>
-    <a routerLink="/home" routerLinkActive="active">Home</a>
+<nav class="nav nav-pills justify-content-center">
+    <a routerLink="/home" class="nav-link" routerLinkActive="active">Home</a>
     <!-- <a routerLink="/search">Search</a>
     <a routerLink="/news">Forum</a> -->
     <ng-container *ngIf="isLogged">
-        <a routerLink="/post-car" routerLinkActive="active">Post car</a>
-        <a routerLink="/auth/profile" routerLinkActive="active">Profile</a>
-        <a (click)="logoutHandler()" routerLink="/auth/logout">Logout</a>
+        <a routerLink="/post-car" class="nav-link" routerLinkActive="active">Post car</a>
+        <a routerLink="/auth/profile" class="nav-link" routerLinkActive="active">Profile</a>
+        <a (click)="logoutHandler()" class="nav-link" routerLink="/auth/logout">Logout</a>
     </ng-container>
 
     <ng-container *ngIf="!isLogged">
-        <a routerLink="/auth/login" routerLinkActive="active">Login</a>
-        <a routerLink="/auth/register" routerLinkActive="active">Register</a>
+        <a routerLink="/auth/login" class="nav-link" routerLinkActive="active">Login</a>
+        <a routerLink="/auth/register" class="nav-link" routerLinkActive="active">Register</a>
     </ng-container>
     
-    <a routerLink="/about">About us</a>
+    <a class="nav-link" routerLink="/about">About us</a>
 </nav>

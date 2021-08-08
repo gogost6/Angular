@@ -14,8 +14,7 @@ export class LoginComponent {
 
   loginHandler(form: NgForm): void {
     if (form.invalid) { throw new Error('Invalid form!'); }
-    console.log(form.value);
-    const {username, password} = form.value;
+    const { username, password } = form.value;
     this.userService.login(username, password);
   }
 }

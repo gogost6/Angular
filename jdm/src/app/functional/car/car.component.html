@@ -1,5 +1,6 @@
-<ng-container *ngFor="let car of searchCars">
+<ng-container *ngFor="let car of cars">
     <div class="container">
+        <img src="{{car.imgUrl}}" alt="carAlt" style="width: 100px;">
         <div>{{car.make}} {{car.model}}</div>
         <div>
             <span class="price">{{car.price}} {{car.currency}}</span>
