@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="postHandler(form)" class="form-control" style="width: 800px; margin: 0 auto;">
+<form #form="ngForm" (ngSubmit)="postHandler(form)" class="form-control" style="width: 800px; margin: 0 auto; margin-top: 10px;">
     <div class="row">
         <div class="col">
             <label for="make">Make</label>
@@ -113,11 +113,13 @@
             </ng-container>
         </div>
     </div>
-    <div>
-        <label for="description">Description</label>
-        <input class="form-control" type="text" name="description" id="description" ngModel>
+    <div class="row">
+        <div class="col">
+            <label for="description">Description</label>
+            <input class="form-control" type="text" name="description" id="description" ngModel>
+        </div>
     </div>
-    <div>
+    <div class="col">
         <ngx-dropzone class="dropzone" (change)="onFilesAdded($event)"
             accept="image/jpeg,image/jpg,image/png,image/gif">
             <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
@@ -126,9 +128,7 @@
                 <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-image-preview>
         </ngx-dropzone>
-        <button *ngIf="isButtonVisible" (click)="uploadPhotos($event)">Upload</button>
+        <button class="btn btn-secondary" style="margin-top: 5px; margin-bottom: 5px;" *ngIf="isButtonVisible" (click)="uploadPhotos($event)">Upload</button>
     </div>
-
     <button class="btn btn-primary">Post</button>
-
 </form>
