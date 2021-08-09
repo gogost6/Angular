@@ -17,7 +17,6 @@ export class SearchService {
   constructor(private http: HttpClient, private router: Router, public sharedService: SharedService) { }
 
   search(data: ICar) {
-    localStorage.setItem('carData', JSON.stringify(data));
     return this.http.post<ICar[]>(`${environment.apiUrl}/auto/search-cars`, data, { withCredentials: true });
   }
 
@@ -27,5 +26,9 @@ export class SearchService {
 
   recent(): Observable<ICar> {
     return this.http.get<ICar>(`${environment.apiUrl}/auto/recent-cars`, { withCredentials: true });
+  }
+
+  created(data: any): Observable<any>{
+    return this.http.post<any>(`${environment.apiUrl}/auto/created`, data, { withCredentials: true })
   }
 }
