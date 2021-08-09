@@ -1,5 +1,5 @@
 <div class="h">
-    <a routerLink="/home">New search</a>
+    <a class="btn btn-light" routerLink="/home">New search</a>
     <div *ngIf="searchCars.length == 0">0 cars found</div>
     <div *ngIf="searchCars.length > 1">{{searchCars.length}} cars found</div>
     <div *ngIf="searchCars.length == 1">{{searchCars.length}} car found</div>
