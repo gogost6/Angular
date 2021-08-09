@@ -9,8 +9,8 @@ import * as countries from '../../../assets/countries.json';
 import { IData } from '../../shared/interfaces/data';
 import { ICars } from '../../shared/interfaces/cars';
 import { ICountries } from '../../shared/interfaces/countries';
-
 import { SearchService } from '../../services/search.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-form',
@@ -26,6 +26,7 @@ export class FormComponent {
   carMake: string = "";
   city: string = "";
 
+
   constructor(
     private searchService: SearchService,
     private router: Router
@@ -33,7 +34,7 @@ export class FormComponent {
 
   searchHandler(form: NgForm): void {
     if (form.invalid) { throw new Error('Invalid form!'); }
-    this.searchService.search(form.value).subscribe();
+    localStorage.setItem('carData', JSON.stringify(form.value));
     this.router.navigate(['/search-car']);
   }
 
