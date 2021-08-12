@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { NgxDropzoneModule } from 'ngx-dropzone'; 
+import { NgImageSliderModule } from 'ng-image-slider';
 
 import { FormComponent } from './form/form.component';
 import { RecentComponent } from './recent/recent.component';
@@ -30,7 +31,8 @@ import { FunctionalRoutingModule } from './functional-routing.module';
     RouterModule,
     FormsModule,
     FunctionalRoutingModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    NgImageSliderModule
   ]
 })
 export class FunctionalModule { }

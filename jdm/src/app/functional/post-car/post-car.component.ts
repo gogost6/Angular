@@ -26,9 +26,10 @@ export class PostCarComponent {
   carMake: string = "";
   city: string = "";
   // in app.component.ts
-  imageUrl!: string;
+  imagesUrl: Array<object> = [];
   files: File[] = [];
   public isButtonVisible = true;
+  postErr: string | undefined;
 
   private async readFile(file: File): Promise<string | ArrayBuffer> {
     return new Promise<any>((resolve, reject) => {
@@ -53,41 +54,45 @@ export class PostCarComponent {
   }
 
   constructor(
-    private http: HttpClient, 
-    private router: Router, 
+    private http: HttpClient,
+    private router: Router,
     private uploadService: UploadService,
     private carService: CarService
-    ) { }
+  ) { }
 
   uploadPhotos(event: any) {
     event.preventDefault();
     if (!this.files[0]) {
       console.log('No photos to upload');
+      return;
+    }
+    let counter = 1;
+    for (let i = 0; i < this.files.length; i++) {
+      const file_data = this.files[i];
+      const data = new FormData();
+      data.append('file', file_data);
+      data.append('upload_preset', 'angular_cloudinary');
+      data.append('cloud_name', 'dyjdf3jmx');
+
+      this.uploadService.uploadImage(data).subscribe((response) => {
+        if (response) {
+          this.imagesUrl.push({ image: response.url, thumbImage: response.url, alt: 'car Img', order: counter });
+          this.isButtonVisible = false;
+        }
+      });
+      counter++;
     }
 
-    const file_data = this.files[0];
-    const data = new FormData();
-    data.append('file', file_data);
-    data.append('upload_preset', 'angular_cloudinary');
-    data.append('cloud_name', 'dyjdf3jmx');
-
-    this.uploadService.uploadImage(data).subscribe((response) =>{
-      if(response) {
-        this.imageUrl = response.url;
-        this.isButtonVisible = false;
-      }
-    })
   }
 
   postHandler(form: NgForm) {
-    let body = Object.assign(form.value, {imgUrl: this.imageUrl});
+    let body = Object.assign(form.value, { imgUrl: this.imagesUrl });
     this.carService.post(body)
       .subscribe(
-        (response) => {
-          console.log(response);
-          this.router.navigate(['/home']);
-        },
-        (error) => console.log(error)
+        (response) => this.router.navigate(['/home']),
+        (error) =>{
+          this.postErr = error;
+        } 
       );
   }
 

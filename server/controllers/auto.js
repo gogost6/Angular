@@ -53,7 +53,7 @@ router.post('/post-car', isAuth(),
             res.json(carData);
         } catch (err) {
             console.log(err);
-            res.status(403).json({});
+            res.status(406).json(err);
         }
     });
 

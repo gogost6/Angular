@@ -1,6 +1,6 @@
 export interface ICar {
     yearMade: Number,
-    imgUrl: string,
+    imgUrl: [{ image: string, thumbImage: string, alt: string, order: number }],
     price: Number,
     make: string,
     variant: string,

@@ -20,7 +20,7 @@ const schema = {
     horsePower: { type: Number, required: true },
     color: { type: String, required: true },
     date: { type: Date, default: Date.now() },
-    imgUrl: { type: String },
+    imgUrl: { type: Array },
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
 }
 
