@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -17,12 +18,8 @@ const routes: Routes = [
     },
     {
         path: 'auth/profile',
+        canActivate: [AuthGuard],
         component: ProfileComponent
-    },
-    {
-        path: 'auth/logout',
-        pathMatch: 'full',
-        redirectTo: '/home'
     }
 ];
 

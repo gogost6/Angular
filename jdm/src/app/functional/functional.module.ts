@@ -11,6 +11,8 @@ import { SearchComponent } from './search/search.component';
 import { PostCarComponent } from './post-car/post-car.component';
 import { CarComponent } from './car/car.component';
 import { DetailsComponent } from './details/details.component';
+import { EditComponent } from './edit/edit.component';
+import { FunctionalRoutingModule } from './functional-routing.module';
 
 
 @NgModule({
@@ -20,12 +22,14 @@ import { DetailsComponent } from './details/details.component';
     SearchComponent,
     PostCarComponent,
     CarComponent,
-    DetailsComponent
+    DetailsComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
+    FunctionalRoutingModule,
     NgxDropzoneModule
   ]
 })

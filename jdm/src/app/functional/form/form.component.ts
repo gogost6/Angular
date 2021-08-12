@@ -26,7 +26,6 @@ export class FormComponent {
   carMake: string = "";
   city: string = "";
 
-
   constructor(
     private searchService: SearchService,
     private router: Router

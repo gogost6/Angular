@@ -1,5 +1,8 @@
-<form #form="ngForm" (ngSubmit)="searchHandler(form)" class="form-control" style="width: 800px; margin: 0 auto; margin-top: 10px;">
+<p style="margin-left: 278px; margin-top: 10px;">Search cars:</p>
+
+<form #form="ngForm" (ngSubmit)="searchHandler(form)" class="form-control" style="width: 800px; margin: 0 auto;">
     <div class="row">
+
         <div class="col">
             <label for="make">Make</label>
             <select class="form-select" name="make" id="make" #makeSelect="ngModel" [(ngModel)]="carMake">
@@ -23,36 +26,16 @@
                 </select>
             </ng-container>
         </div>
-        <div class="col">
-            <label for="model">Model</label>
-            <ng-container *ngIf="!carMake">
-                <select class="form-select" name="model" id="model" disabled ngModel>
-                    <option value="">Any</option>
-                </select>
-            </ng-container>
 
-            <ng-container *ngIf="carMake">
-                <select class="form-select" name="model" id="model" ngModel>
-                    <option value="">Any</option>
-                    <option *ngFor="let model of cars[carMake].models" [value]="model">{{model}}</option>
-                </select>
-            </ng-container>
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col">
-            <label for="maxPrice">Max price</label>
-            <input class="form-control" type="text" name="maxPrice" id="maxPrice" ngModel>
-        </div>
-        <div class="col-md-auto">
             <label for="country">Country</label>
             <select class="form-select" name="country" id="country" [(ngModel)]="city">
                 <option value="" selected>Any</option>
                 <option *ngFor="let country of jsonData.countries" [value]="country">{{country}}</option>
             </select>
         </div>
-        <div class="col col-lg-2">
+
+        <div class="col">
             <label for="city">City</label>
             <ng-container *ngIf="!city">
                 <select class="form-select" name="city" id="city" disabled>
@@ -70,6 +53,7 @@
     </div>
 
     <div class="row">
+
         <div class="col">
             <label for="dateMade">Year</label>
             <select class="form-select" name="dateMade" id="dateMade" ngModel>
@@ -77,6 +61,7 @@
                 <option *ngFor="let year of jsonData.years" [value]="year">{{year}}</option>
             </select>
         </div>
+
         <div class="col">
             <label for="engine">Engine</label>
             <select class="form-select" name="engine" id="engine" ngModel>
@@ -84,6 +69,7 @@
                 <option *ngFor="let engine of jsonData.engine" [value]="engine">{{engine}}</option>
             </select>
         </div>
+
         <div class="col">
             <label for="gears">Gears</label>
             <select class="form-select" name="gears" id="gears" ngModel>
@@ -91,9 +77,14 @@
                 <option *ngFor="let gears of jsonData.gears" [value]="gears">{{gears}}</option>
             </select>
         </div>
+        
+        <div class="col">
+            <label for="maxPrice">Max price</label>
+            <input class="form-control" type="text" name="maxPrice" id="maxPrice" maxlength="9" ngModel>
+        </div>
     </div>
 
-    <button class="btn btn-primary">Search</button>
+    <button class="btn btn-primary" style="margin-top: 10px;">Search</button>
 
 </form>
 <app-recent></app-recent>

@@ -9,13 +9,17 @@ import { SharedService } from '../../services/shared.service';
   templateUrl: './car.component.html',
   styleUrls: ['./car.component.sass']
 })
-export class CarComponent implements OnInit{
+export class CarComponent implements OnInit {
   cars!: ICar[];
 
   constructor(private sharedService: SharedService) {
-   }
+  }
 
-   ngOnInit() {
+  // likeBtnHandler() {
+
+  // }
+
+  ngOnInit() {
     this.sharedService.currentMessage.subscribe(message => this.cars = message);
   }
 }

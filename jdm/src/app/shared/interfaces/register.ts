@@ -5,4 +5,6 @@ export interface IUser {
     password: string;
     rePass: string;
     _id: string;
+    createdAutos: string[];
+    favourite: string[];
 }

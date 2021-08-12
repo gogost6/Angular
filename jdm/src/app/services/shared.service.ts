@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ICar } from '../shared/interfaces/car';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class SharedService {
   private messageSource = new BehaviorSubject<ICar[]>([]);
   private messageDetailsSource = new BehaviorSubject<any>({});
   currentMessage = this.messageSource.asObservable();
-  currentDetailsMessage = this.messageDetailsSource.asObservable();
+  currentDetailsMessage: Observable<ICar> = this.messageDetailsSource.asObservable();
   data: any;
 
   constructor() { }

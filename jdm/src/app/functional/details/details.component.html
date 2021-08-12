@@ -1,29 +1,25 @@
 <div class="container">
-  <div class="row">
-    <div class="col">{{car.make}} {{car.model}} {{car.variant}}</div>
-    <div class="col" style="padding-right: 700px;">
+  <div class="row" style="margin-bottom: 5px;">
+    <div class="col fs-5">{{car.make}} {{car.model}} {{car.variant}}</div>
+    <div class="col fs-5" style="padding-right: 700px;">
         <span class="price">{{car.price}} {{car.currency}}</span>
     </div>
   </div>
   <img src="{{car.imgUrl}}" alt="carImg">
-  <div *ngIf="isOwner">
-    <button class="btn btn-success" routerLink="/edit/:id">Edit</button>
+  <div *ngIf="isOwner" style="margin-top: 10px; margin-bottom: 10px;">
+  <button class="btn btn-success" [routerLink]="['/edit', car._id]" style="margin-right: 5px;">Edit</button>
     <button class="btn btn-danger" (click)="deleteCar(car._id)">Delete</button>
   </div>
-  <ul>
-     <li> Date made: {{car.dateMade}}</li>
-     <li> Engine: {{car.engine}}</li>
-     <li> Horse Power: {{car.horsePower}} HP</li>
-     <li> Documents: {{car.documents}}</li>
-     <li> Gears: {{car.gears}}</li>
-     <li> Category: {{car.type}}</li>
-     <li> Mileage: {{car.mileage}} km</li>
-     <li> Color: {{car.color}}</li>
-     <li> Location: {{car.country}}, {{car.city}}</li>
+  <ul class="list-group list-group-flush">
+     <li class="list-group-item"> Date made: {{car.dateMade ? car.dateMade.slice(0, 10) : car.dateMade}}</li>
+     <li class="list-group-item"> Engine: {{car.engine}}</li>
+     <li class="list-group-item"> Horse Power: {{car.horsePower}} HP</li>
+     <li class="list-group-item"> Documents: {{car.documents === "true" ? "yes" : "no"}}</li>
+     <li class="list-group-item"> Gears: {{car.gears}}</li>
+     <li class="list-group-item"> Category: {{car.type}}</li>
+     <li class="list-group-item"> Mileage: {{car.mileage}} km</li>
+     <li class="list-group-item"> Color: {{car.color}}</li>
+     <li class="list-group-item"> Location: {{car.country}}, {{car.city}}</li>
+     <li class="list-group-item"> Car description: <br> {{car.description}}</li>
   </ul>
-  <div>
-    Car description:
-    <br>
-    {{car.description}}
-  </div>
 </div>

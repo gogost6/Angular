@@ -2,9 +2,12 @@
     <div class="row">
         <div class="col">
             <label for="make">Make</label>
-            <select class="form-select" name="make" id="make" #makeSelect="ngModel" [(ngModel)]="carMake">
+            <select class="form-select" name="make" id="make" #makeSelect="ngModel" required [(ngModel)]="carMake">
                 <option *ngFor="let make of jsonData.cars" [value]="make">{{make}}</option>
             </select>
+            <div *ngIf="makeSelect.invalid && makeSelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="makeSelect.errors?.required">Make is required</div>
+            </div>
         </div>
 
         <div class="col">
@@ -15,88 +18,125 @@
             </ng-container>
 
             <ng-container *ngIf="carMake">
-                <select class="form-select" name="model" id="model" ngModel>
+                <select class="form-select" name="model" id="model" #modelSelect="ngModel" required ngModel>
                     <option *ngFor="let model of cars[carMake].models" [value]="model">{{model}}</option>
                 </select>
+                <div *ngIf="modelSelect.invalid && modelSelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                    <div *ngIf="modelSelect.errors?.required">Model is required</div>
+                </div>
             </ng-container>
         </div>
 
         <div class="col">
             <label for="variant">Variant</label>
-            <input class="form-control" type="text" name="variant" id="variant" ngModel>
+            <input class="form-control" type="text" name="variant" id="variant" maxlength="30" ngModel>
         </div>
         <div class="col">
             <label for="engine">Engine</label>
-            <select class="form-select" name="engine" id="engine" ngModel>
+            <select class="form-select" name="engine" id="engine" #engineSelect="ngModel" required  ngModel>
                 <option *ngFor="let engine of jsonData.engine" [value]="engine">{{engine}}</option>
             </select>
+            <div *ngIf="engineSelect.invalid && engineSelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="engineSelect.errors?.required">Engine is required</div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <label for="condition">Condition</label>
-            <select class="form-select" name="condition" id="condition" ngModel>
+            <select class="form-select" name="condition" id="condition" #conditionSelect="ngModel" required ngModel>
                 <option value="new" selected="selected">New</option>
                 <option value="old">Old</option>
                 <option value="for pars">For parts</option>
             </select>
+            <div *ngIf="conditionSelect.invalid && conditionSelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="conditionSelect.errors?.required">Condition is required</div>
+            </div>
         </div>
         <div class="col">
             <label for="horsePower">Horse Power</label>
-            <input class="form-control" type="text" name="horsePower" id="horsePower" ngModel>
+            <input class="form-control" type="text" name="horsePower" id="horsePower" #hpSelect="ngModel" required ngModel>
+            <div *ngIf="hpSelect.invalid && hpSelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="hpSelect.errors?.required">HP is required</div>
+            </div>
         </div>
         <div class="col">
             <label for="gears">Gears</label>
-            <select class="form-select" name="gears" id="gears" ngModel>
+            <select class="form-select" name="gears" id="gears" #gearSelect="ngModel" required ngModel>
                 <option *ngFor="let gears of jsonData.gears" [value]="gears">{{gears}}</option>
             </select>
+            <div *ngIf="gearSelect.invalid && gearSelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="gearSelect.errors?.required">Gears is required</div>
+            </div>
         </div>
         <div class="col">
             <label for="type">Car Type</label>
-            <select class="form-select" name="type" id="type" ngModel>
+            <select class="form-select" name="type" id="type" #typeSelect="ngModel" required  ngModel>
                 <option *ngFor="let type of jsonData.carType" [value]="type">{{type}}</option>
             </select>
+            <div *ngIf="typeSelect.invalid && typeSelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="typeSelect.errors?.required">Car type is required</div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <label for="price">Price</label>
-            <input class="form-control" type="text" name="price" id="price" ngModel>
+            <input class="form-control" type="text" name="price" id="price" #priceInput="ngModel" required pattern="^[0-9]+$" maxlength="9" ngModel>
+            <div *ngIf="priceInput.invalid && priceInput.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="priceInput.errors?.required">Price is required</div>
+                <div *ngIf="priceInput.errors?.pattern">Price should be only numbers</div>
+            </div>
         </div>
         <div class="col">
             <label for="currency">Currency</label>
-            <select class="form-select" name="currency" id="currency" ngModel>
+            <select class="form-select" name="currency" id="currency" #currencySelect="ngModel" required ngModel>
                 <option *ngFor="let currency of jsonData.currency" [value]="currency">{{currency}}</option>
             </select>
+            <div *ngIf="currencySelect.invalid && currencySelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="currencySelect.errors?.required">Currency is required</div>
+            </div>
         </div>
         <div class="col">
             <label class="form-check-label" for="documents">Documents</label>
             <div class="form-check">                
-                <input class="form-check-input" class="radio" type="radio" value="true" id="true" name="documents" selected="selected" ngModel> Yes
-                <input class="form-check-input" class="radio" type="radio" value="false" id="false" name="documents" ngModel> No
+                <input class="form-check-input" class="radio" type="radio" value="true" id="true" name="documents" ngModel checked="checked"> <label for="documents"> Yes </label> 
+                <input class="form-check-input" class="radio" type="radio" value="false" id="false" name="documents" ngModel> <label for="documents"> No </label> 
             </div>
         </div>
         <div class="col">
             <label for="dateMade">Date</label>
-            <input class="form-control" name="dateMade" id="dateMade" type="date" ngModel>
+            <input class="form-control" name="dateMade" id="dateMade" type="date" #dateInput="ngModel" required ngModel>
+            <div *ngIf="dateInput.invalid && dateInput.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="dateInput.errors?.required">Date is required</div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <label for="mileage">Mileage</label>
-            <input class="form-control" type="text" name="mileage" id="mileage" ngModel>
+            <input class="form-control" type="text" name="mileage" id="mileage" #mileageInput="ngModel" required ngModel>
+            <div *ngIf="mileageInput.invalid && mileageInput.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="mileageInput.errors?.required">Mileage is required</div>
+            </div>
         </div>
         <div class="col">
             <label for="color">Color</label>
-            <select class="form-select" name="color" id="color" ngModel>
+            <select class="form-select" name="color" id="color" #colorSelect="ngModel" required ngModel>
                 <option *ngFor="let color of jsonData.colors" [value]="color">{{color}}</option>
             </select>
+            <div *ngIf="colorSelect.invalid && colorSelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="colorSelect.errors?.required">Color is required</div>
+            </div>
         </div>
         <div class="col">
             <label for="country">Country</label>
-            <select class="form-select" name="country" id="country" [(ngModel)]="city">
+            <select class="form-select" name="country" id="country" #countrySelect="ngModel" required [(ngModel)]="city">
                 <option *ngFor="let country of jsonData.countries" [value]="country">{{country}}</option>
             </select>
+            <div *ngIf="countrySelect.invalid && countrySelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                <div *ngIf="countrySelect.errors?.required">Country is required</div>
+            </div>
         </div>
 
         <div class="col">
@@ -107,28 +147,35 @@
             </ng-container>
 
             <ng-container *ngIf="city">
-                <select class="form-select" name="city" id="city" ngModel>
+                <select class="form-select" name="city" id="city" #citySelect="ngModel" required ngModel>
                     <option *ngFor="let town of countries[city].towns" [value]="town">{{town}}</option>
                 </select>
+                <div *ngIf="citySelect.invalid && citySelect.touched" class="alert alert-danger" style="margin-top: 5px;">
+                    <div *ngIf="citySelect.errors?.required">City is required</div>
+                </div>
             </ng-container>
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col" style="margin-bottom: 10px;">
             <label for="description">Description</label>
-            <input class="form-control" type="text" name="description" id="description" ngModel>
+            <textarea class="form-control" type="text" name="description" id="description" #descriptionArea="ngModel" maxlength="500" ngModel></textarea>
+            <p class="fs-6">
+                Description max length is 500 chars!
+            </p>
         </div>
     </div>
     <div class="col">
         <ngx-dropzone class="dropzone" (change)="onFilesAdded($event)"
             accept="image/jpeg,image/jpg,image/png,image/gif">
-            <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+            <ngx-dropzone-label>Your photo!</ngx-dropzone-label>
             <ngx-dropzone-image-preview [removable]="true" (removed)="onRemove(f)" ngProjectAs="ngx-dropzone-preview"
                 *ngFor="let f of files" [file]="f">
                 <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-image-preview>
         </ngx-dropzone>
         <button class="btn btn-secondary" style="margin-top: 5px; margin-bottom: 5px;" *ngIf="isButtonVisible" (click)="uploadPhotos($event)">Upload</button>
+        <button class="btn btn-success" style="margin-top: 5px; margin-bottom: 5px;" *ngIf="!isButtonVisible" disabled>Success</button>
     </div>
-    <button class="btn btn-primary">Post</button>
+    <button class="btn btn-primary" style="margin-top: 10px;">Post</button>
 </form>

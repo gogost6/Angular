@@ -11,8 +11,6 @@ import { ICars } from '../../shared/interfaces/cars';
 import { ICountries } from '../../shared/interfaces/countries';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '../../../environments/environment';
-
 import { UploadService } from '../../services/upload.service';
 import { CarService } from '../../services/car.service';
 

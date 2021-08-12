@@ -42,21 +42,13 @@ export class UserService {
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
         return user;
-      }))
-      .subscribe(
-        (response) => {
-          this.router.navigate(['/']);
-        },
-        (error) => console.log(error)
-      );
+      }));
   }
 
   logout() {
     // remove user from local storage and set current user to null
     this.http.get<any>(`${environment.apiUrl}/user/logout`, { withCredentials: true })
-      .subscribe(
-        (error) => console.log(error)
-      );
+      .subscribe();
     localStorage.removeItem('user');
     this.userSubject.next(null);
     this.router.navigate(['/auth/login']);

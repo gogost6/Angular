@@ -40,6 +40,7 @@ export class DetailsComponent implements OnInit {
 
   deleteCar(id: string) {
     this.carService.delete(id).subscribe((response) => {
+      this.userData;
       if (response) {
         console.log('DELETED');
       }
