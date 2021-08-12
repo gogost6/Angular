@@ -101,7 +101,7 @@ router.post('/login',
                 if (!isMatch) {
                     throw new Error('Wrong username or password!');
                 } else {
-                    const userViewModel = { _id: user._id, email: user.email, username: user.username, };
+                    const userViewModel = { _id: user._id, email: user.email, username: user.username, createdAutos: user.createdAutos };
                     const token = jwt.sign(userViewModel, TOKEN_SECRET);
                     res.cookie(COOKIE_NAME, token, { httpOnly: true, sameSite: 'Lax' });
                     res.json(userViewModel);
@@ -109,7 +109,7 @@ router.post('/login',
             }
         } catch (err) {
             console.log(err);
-            res.status(401).json({ message: 'Error with login!' });
+            res.status(401).json({ msg: 'Wrong username or password!' });
         }
     });
 
