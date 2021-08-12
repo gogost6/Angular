@@ -14,7 +14,6 @@ async function getRecent() {
 
 async function getCarsByCriteria(data) {
     let obj = {};
-    console.log(data)
     let criteria = Object.entries(data).filter(x => x[1] !== '').forEach(x => {
         if (x[0] == 'minPrice' || x[0] == 'maxPrice') {
             obj.price = {};
