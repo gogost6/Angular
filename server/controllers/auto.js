@@ -96,5 +96,78 @@ router.get('/delete/:id', async (req, res) => {
         console.log(err);
         res.status(400).json({message: 'Error'});
     }
-})
+});
+
+router.post('/created', async (req, res) => {
+    if(req.body.length > 0) {
+        try {
+            let createdArr = [];
+            for(let i = 0; i < req.body.length; i++) {
+                const car = await req.storage.getById(req.body[i]);
+                if(car) {
+                    createdArr.push(car);
+                }
+            }
+            res.json(createdArr);
+        } catch (err) {
+            console.log(err);
+            res.status(400).json({message: 'Error'});
+        }
+    }
+});
+
+router.post('/edit/:id', isAuth(),
+    body('make')
+        .notEmpty()
+        .withMessage('The make should not be empty!'),
+    body('model')
+        .notEmpty()
+        .withMessage('The model should not be empty!'),
+    body('engine')
+        .notEmpty()
+        .withMessage('The engine should not be empty!'),
+    body('condition')
+        .notEmpty()
+        .withMessage('The condition should not be empty!'),
+    body('gears')
+        .notEmpty()
+        .withMessage('The gears should not be empty!'),
+    body('type')
+        .notEmpty()
+        .withMessage('The car type should not be empty!'),
+    body('price')
+        .notEmpty()
+        .withMessage('The price should not be empty!'),
+    body('currency')
+        .notEmpty()
+        .withMessage('The currency should not be empty!'),
+    body('mileage')
+        .notEmpty()
+        .withMessage('The mileage should not be empty!'),
+    body('color')
+        .notEmpty()
+        .withMessage('The color should not be empty!'),
+    body('country')
+        .notEmpty()
+        .withMessage('The country should not be empty!'),
+    body('city')
+        .notEmpty()
+        .withMessage('The city should not be empty!'),
+    body('description')
+        .notEmpty()
+        .withMessage('The description should not be empty!'),
+    async (req, res) => {
+        try {
+            const errors = Object.values(validationResult(req).mapped());
+            if (errors.length > 0) {
+                throw new Error(errors.map(e => e.msg).join('\n'));
+            }
+            const carData = await req.storage.edit(req.params.id, req.body);
+            console.log('Successfully edited car!');
+            res.json(carData);
+        } catch (err) {
+            console.log(err);
+            res.status(403).json({});
+        }
+    });
 module.exports = router;
