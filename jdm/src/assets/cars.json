@@ -116,26 +116,23 @@
     },
     "Lexus": {
         "models": [
-            "EX30",
-            "EX35",
-            "EX37",
-            "FX",
-            "G35",
-            "G37",
-            "M30",
-            "M35",
-            "M37",
-            "Q30",
-            "Q45",
-            "Q50",
-            "Q60",
-            "Q70",
-            "QX30",
-            "QX50",
-            "QX56",
-            "QX60",
-            "QX70",
-            "QX80"
+            "CT200h",
+            "Es",
+            "Gs",
+            "Is200",
+            "Is300",
+            "LC",
+            "LFA",
+            "LS",
+            "Lx",
+            "NX",
+            "RC",
+            "RX330",
+            "Rx300",
+            "Rx350",
+            "Rx400h",
+            "Rx450",
+            "UX"
         ]
     },
     "Mazda": {
@@ -352,7 +349,7 @@
             "Land Cruiser",
             "Lite-Ace",
             "Matrix",
-             "Mirai",
+            "Mirai",
             "MR 2",
             "Paseo",
             "Picnic",
@@ -372,7 +369,7 @@
             "Urban Cruiser",
             "Verso",
             "Verso-S",
-            "Yaris"   
+            "Yaris"
         ]
     }
 }
