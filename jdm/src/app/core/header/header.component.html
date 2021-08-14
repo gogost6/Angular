@@ -4,7 +4,7 @@
     <a routerLink="/news">Forum</a> -->
     <ng-container *ngIf="isLogged">
         <a routerLink="/post-car" class="nav-link" routerLinkActive="active">Post car</a>
-        <a routerLink="/auth/profile" class="nav-link" routerLinkActive="active">Profile</a>
+        <a routerLink="/auth/profile/my-cars" class="nav-link" routerLinkActive="active">Profile</a>
         <button (click)="logoutHandler()" class="nav-link">Logout</button>
     </ng-container>
 
