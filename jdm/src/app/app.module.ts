@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { FunctionalModule } from './functional/functional.module';
+import { LoaderComponent } from './shared/loader/loader.component';
 
 @NgModule({
   declarations: [
