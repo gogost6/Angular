@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+import { FunctionalModule } from '../functional/functional.module';
+import { AuthModule } from '../auth/auth.module';
+
 
 
 @NgModule({
@@ -14,7 +17,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FunctionalModule,
+    AuthModule
   ],
   exports: [
     HeaderComponent
