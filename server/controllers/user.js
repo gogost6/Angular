@@ -101,7 +101,7 @@ router.post('/login',
                 if (!isMatch) {
                     throw new Error('Wrong username or password!');
                 } else {
-                    const userViewModel = { _id: user._id, email: user.email, username: user.username, createdAutos: user.createdAutos };
+                    const userViewModel = { _id: user._id, email: user.email, username: user.username, createdAutos: user.createdAutos, telephone: user.telephone };
                     const token = jwt.sign(userViewModel, TOKEN_SECRET);
                     res.cookie(COOKIE_NAME, token, { httpOnly: true, sameSite: 'Lax' });
                     res.json(userViewModel);
@@ -110,6 +110,48 @@ router.post('/login',
         } catch (err) {
             console.log(err);
             res.status(401).json({ msg: 'Wrong username or password!' });
+        }
+    });
+
+router.post('/edit',
+    body('username')
+        .trim()
+        .isAlphanumeric()
+        .withMessage('The username should contain only chars!')
+        .isLength({ min: 5 })
+        .withMessage('The username should be atleast 5 chars!'),
+    body('telephone')
+        .trim()
+        .isNumeric()
+        .withMessage('The telephone input should contain only numbers!'),
+    async (req, res) => {
+        try {
+            const { id, username, telephone, curUsername, curTelephone } = req.body;
+            const errors = Object.values(validationResult(req).mapped());
+
+            if (errors.length > 0) {
+                throw new Error(errors.map(e => e.msg).join('\n'));
+            }
+
+            const existingByUsername = await userService.getUserByUsername(username);
+            const existingByTelephone = await userService.getUserByTelephone(telephone);
+
+            console.log(curUsername, username)
+            if (existingByUsername && curUsername != username) {
+                throw new Error('Username is taken!');
+            }
+
+            if (existingByTelephone && curTelephone != telephone) {
+                throw new Error('Telephone is being used by other user!');
+            }
+
+            const userViewModel = { username, telephone };
+            const user = await userService.updateUser(id, userViewModel);
+            
+            res.json(user);
+        } catch (err) {
+            console.log(err);
+            res.status(401).json({ message: err });
         }
     });
 

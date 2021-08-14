@@ -1,11 +1,9 @@
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 async function createUser(email, username, telephone, hashedPassword) {
     const user = new User({
         email,
-		username,
+        username,
         telephone,
         hashedPassword
     });
@@ -15,9 +13,15 @@ async function createUser(email, username, telephone, hashedPassword) {
     return user;
 }
 
+async function updateUser(id, body) {
+    const user = await User.findOneAndUpdate(id, body, { safe: true, multi: true, new: true });
+    await user.save();
+    return user;
+}
+
 async function getUserByEmail(email) {
     const pattern = new RegExp(`^${email}$`, 'i');
-    if(email) {
+    if (email) {
         return await User.findOne({ email: { $regex: pattern } }).lean();
     } else {
         return false;
@@ -26,7 +30,7 @@ async function getUserByEmail(email) {
 
 async function getUserByUsername(username) {
     const pattern = new RegExp(`^${username}$`, 'i');
-    if(username) {
+    if (username) {
         const user = await User.findOne({ username: { $regex: pattern } }).lean();
         return user;
     } else {
@@ -36,7 +40,7 @@ async function getUserByUsername(username) {
 
 async function getUserByTelephone(telephone) {
     const pattern = new RegExp(`^${telephone}$`, 'i');
-    if(telephone) {
+    if (telephone) {
         return await User.findOne({ telephone: { $regex: pattern } }).lean();
     } else {
         return false;
@@ -53,5 +57,6 @@ module.exports = {
     getUserByEmail,
     getAllUsers,
     getUserByUsername,
-    getUserByTelephone
+    getUserByTelephone,
+    updateUser
 };

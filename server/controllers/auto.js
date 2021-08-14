@@ -113,6 +113,8 @@ router.post('/created', async (req, res) => {
             console.log(err);
             res.status(400).json({message: 'Error'});
         }
+    } else {
+        res.json([]);
     }
 });
 
