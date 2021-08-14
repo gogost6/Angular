@@ -1,16 +1,19 @@
 <div class="container" style="margin-left: 264px; margin-top: 10px;">
     <p class="fs-5">Recently added cars:</p>
+    <app-loader *ngIf="!recentCars"></app-loader>
     <ng-container class="col-lg-2 col-md-4 mb-4" *ngFor="let car of recentCars">
-        
+
         <div class="card-body" style="width: 18rem; display: inline-block;">
-            <img class="card-img-top" [src]="car.imgUrl[0]?.image" alt="car Image">
-            <div>
-                <h5><span>{{car.make}}</span></h5>
-                <p>{{car.model}} {{car.variant}}</p>
-                <h5> <span>{{car.price}} {{car.currency}}</span></h5>
-                <p>{{car.mileage}} km</p>
-                <p>{{car.country}}, {{car.city}}</p>
-            </div>
+            <a [routerLink]="['/details', car._id]" style="text-decoration: none; color: black;">
+                <img class="card-img-top" [src]="car.imgUrl[0]?.image" alt="car Image">
+                <div>
+                    <h5><span>{{car.make}}</span></h5>
+                    <p>{{car.model}} {{car.variant}}</p>
+                    <h5> <span>{{car.price}} {{car.currency}}</span></h5>
+                    <p>{{car.mileage}} km</p>
+                    <p>{{car.country}}, {{car.city}}</p>
+                </div>
+            </a>
             <div>
                 <a [routerLink]="['/details', car._id]" class="btn btn-primary">Details</a>
             </div>

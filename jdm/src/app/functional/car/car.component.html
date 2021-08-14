@@ -1,21 +1,26 @@
 <ng-container *ngFor="let car of cars">
-    <div class="container">
-        <a routerLink="/details/{{car._id}}">
-            <img [src]="car.imgUrl[0].image" alt="carAlt" style="width: 100px;">
-            <div>{{car.make}} {{car.model}}</div>
-        </a>
-        <div>
-            <span class="price">{{car.price}} {{car.currency}}</span>
+    <div class="container" style="padding-top: 10px; margin-left: 410px;">
+        <div class="row">
+            <div class="col">
+                <a routerLink="/details/{{car._id}}" style="text-decoration: none;">
+                    <div class="fs-5">{{car.make}} {{car.model}} {{car.variant}}</div>
+                    <img [src]="car.imgUrl[0].image" alt="carAlt" style="width: 200px;">
+                </a>
+            </div>
+            <div class="col">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> Price: {{car.price}} {{car.currency}}</li>
+                    <li class="list-group-item"> Date made: {{car.dateMade.slice(0, 10)}}</li>
+                    <li class="list-group-item"> Mileage: {{car.mileage}} km</li>
+                    <li class="list-group-item"> Color: {{car.color}}</li>
+                    <li class="list-group-item"> Location: {{car.country}}, {{car.city}}</li>
+                </ul>
+            </div>
         </div>
+
         <!-- <button class="btn btn-primary" (click)="likeBtnHandler()">
             LIKE
         </button> -->
-        <ul>
-            <li> Date made: {{car.dateMade.slice(0, 10)}}</li>
-            <li> Mileage: {{car.mileage}}</li>
-            <li> Color: {{car.color}}</li>
-            <li> Location: {{car.country}}, {{car.city}}</li>
-        </ul>
     </div>
     <div class="space"></div>
 </ng-container>

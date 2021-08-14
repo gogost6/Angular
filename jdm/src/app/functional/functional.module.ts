@@ -15,6 +15,8 @@ import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { FunctionalRoutingModule } from './functional-routing.module';
 
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { FunctionalRoutingModule } from './functional-routing.module';
     FormsModule,
     FunctionalRoutingModule,
     NgxDropzoneModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    SharedModule
   ]
 })
 export class FunctionalModule { }

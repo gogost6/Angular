@@ -1,14 +1,17 @@
-<div class="h">
-    <a class="btn btn-light" routerLink="/home">New search</a>
-    <div *ngIf="searchCars.length == 0">0 cars found</div>
-    <div *ngIf="searchCars.length > 1">{{searchCars.length}} cars found</div>
-    <div *ngIf="searchCars.length == 1">{{searchCars.length}} car found</div>
+<app-loader *ngIf="searchCars.length <= 0" style="margin-left: 410px;"></app-loader>
+<div *ngIf="searchCars">
+    <div class="h" style="margin-left: 410px;">
+        <a class="btn btn-light" routerLink="/home">New search</a>
+        <div class="mrg" *ngIf="searchCars.length == 0">0 cars found</div>
+        <div class="mrg" *ngIf="searchCars.length > 1">{{searchCars.length}} cars found</div>
+        <div class="mrg" *ngIf="searchCars.length == 1">{{searchCars.length}} car found</div>
 
-    <!-- <ul class="algright">
-        <span class="pageNumbersDisable"></span>
-        <span class="pageNumbersSelect"></span>
-        <span class="pageNumbersDisable"></span>
-    </ul> -->
+        <!-- <ul class="algright">
+            <span class="pageNumbersDisable"></span>
+            <span class="pageNumbersSelect"></span>
+            <span class="pageNumbersDisable"></span>
+        </ul> -->
+    </div>
 </div>
 
 <app-car></app-car>

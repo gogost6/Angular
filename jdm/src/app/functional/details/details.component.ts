@@ -6,6 +6,8 @@ import { ICar } from '../../shared/interfaces/car';
 import { CarService } from '../../services/car.service';
 import { SearchService } from '../../services/search.service';
 import { UserService } from '../../services/user.service';
+import { IUser } from '../../shared/interfaces/register';
+import { skip } from 'rxjs/operators';
 
 @Component({
   selector: 'app-details',
@@ -16,8 +18,9 @@ export class DetailsComponent implements OnInit {
   car!: ICar;
   id = this._Activatedroute.snapshot.paramMap.get("id");
   isOwner: boolean = false;
+  telephone!: number;
 
-  get userData() {
+  get userData(): IUser {
     return JSON.parse(this.userService.userData) !== null ? JSON.parse(this.userService.userData) : undefined;
   }
 

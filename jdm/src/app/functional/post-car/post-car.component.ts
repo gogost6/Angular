@@ -103,12 +103,10 @@ export class PostCarComponent {
 
   // in app.component.ts
   onFilesAdded(event: any) {
-    console.log(event);
     this.files.push(...event.addedFiles);
 
     this.readFile(this.files[0]).then(fileContents => {
       // Put this string in a request body to upload it to an API.
-      console.log(fileContents);
     });
   }
 }
