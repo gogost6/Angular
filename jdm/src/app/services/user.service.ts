@@ -69,4 +69,21 @@ export class UserService {
         (error) => console.log(error)
       );
   }
+
+  edit(id: string, userData: IUser, curUsername: string, curTelephone: number) {
+    console.log(userData)
+    return this.http.post(`${environment.apiUrl}/user/edit`, { id, ...userData, curUsername, curTelephone }, { withCredentials: true })
+      .pipe(
+        map(user => {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('user', JSON.stringify(user));
+          this.userSubject.next(user);
+        }))
+      .subscribe(
+        (response) => {
+          this.router.navigate(['/']);
+        },
+        (error) => console.log(error)
+      );
+  }
 }
