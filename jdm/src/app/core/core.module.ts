@@ -4,13 +4,15 @@ import { RouterModule } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
 import { AsideComponent } from './aside/aside.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    AsideComponent
+    AsideComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,
