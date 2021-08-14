@@ -71,7 +71,6 @@ export class UserService {
   }
 
   edit(id: string, userData: IUser, curUsername: string, curTelephone: number) {
-    console.log(userData)
     return this.http.post(`${environment.apiUrl}/user/edit`, { id, ...userData, curUsername, curTelephone }, { withCredentials: true })
       .pipe(
         map(user => {

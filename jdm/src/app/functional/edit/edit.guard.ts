@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { IUser } from 'src/app/shared/interfaces/register';
+
+import { IUser } from '../../shared/interfaces/register';
 import { UserService } from '../../services/user.service';
 
 @Injectable({

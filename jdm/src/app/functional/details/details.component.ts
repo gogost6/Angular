@@ -18,7 +18,6 @@ export class DetailsComponent implements OnInit {
   car!: ICar;
   id = this._Activatedroute.snapshot.paramMap.get("id");
   isOwner: boolean = false;
-  telephone!: number;
 
   get userData(): IUser {
     return JSON.parse(this.userService.userData) !== null ? JSON.parse(this.userService.userData) : undefined;

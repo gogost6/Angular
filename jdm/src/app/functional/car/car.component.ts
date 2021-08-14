@@ -10,7 +10,7 @@ import { SharedService } from '../../services/shared.service';
   styleUrls: ['./car.component.sass']
 })
 export class CarComponent implements OnInit {
-  cars!: ICar[];
+  cars: ICar[] | undefined;
 
   constructor(private sharedService: SharedService) {
   }
@@ -20,6 +20,7 @@ export class CarComponent implements OnInit {
   // }
 
   ngOnInit() {
+    this.cars = undefined;
     this.sharedService.currentMessage.subscribe(message => this.cars = message);
   }
 }
