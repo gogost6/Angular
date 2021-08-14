@@ -19,7 +19,7 @@ const schema = {
     gears: { type: String, required: true },
     horsePower: { type: Number, required: true },
     color: { type: String, required: true },
-    date: { type: Date, default: Date.now() },
+    date: { type: Date, default: new Date() },
     imgUrl: { type: Array },
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
 }
