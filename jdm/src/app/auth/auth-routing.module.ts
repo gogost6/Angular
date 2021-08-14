@@ -5,6 +5,9 @@ import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { MyCarsComponent } from './my-cars/my-cars.component';
+import { EditComponent } from './edit/edit.component';
+
 
 
 const routes: Routes = [
@@ -19,7 +22,17 @@ const routes: Routes = [
     {
         path: 'auth/profile',
         canActivate: [AuthGuard],
-        component: ProfileComponent
+        component: ProfileComponent,
+        children: [
+            {
+                path: 'my-cars',
+                component: MyCarsComponent
+            },
+            {
+                path: 'edit',
+                component: EditComponent
+            },
+        ]
     }
 ];
 

@@ -7,6 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthRoutingModule } from './auth-routing.module';
+import { MyCarsComponent } from './my-cars/my-cars.component';
+import { EditComponent } from './edit/edit.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,13 +17,16 @@ import { AuthRoutingModule } from './auth-routing.module';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    MyCarsComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     AuthRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   exports:  [
     LoginComponent,
