@@ -21,6 +21,8 @@ export interface ICar {
     _id: string,
     engine: string,
     owner: {
-        _id: string
+        _id: string;
+        telephone: number;
+        username: string;
     }
 }
