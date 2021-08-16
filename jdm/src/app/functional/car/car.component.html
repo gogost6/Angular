@@ -10,7 +10,7 @@
             <div class="col">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"> Price: {{car.price}} {{car.currency}}</li>
-                    <li class="list-group-item"> Date made: {{car.dateMade.slice(0, 10)}}</li>
+                    <li class="list-group-item"> Date made: {{car.dateMade | date: 'dd/MM/yyyy'}}</li>
                     <li class="list-group-item"> Mileage: {{car.mileage}} km</li>
                     <li class="list-group-item"> Color: {{car.color}}</li>
                     <li class="list-group-item"> Location: {{car.country}}, {{car.city}}</li>
