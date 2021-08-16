@@ -24,8 +24,8 @@ export class SearchService {
     return this.http.get<ICar>(`${environment.apiUrl}/auto/details/${id}`, { withCredentials: true })
   }
 
-  recent(): Observable<ICar> {
-    return this.http.get<ICar>(`${environment.apiUrl}/auto/recent-cars`, { withCredentials: true });
+  recent(): Observable<ICar[]> {
+    return this.http.get<ICar[]>(`${environment.apiUrl}/auto/recent-cars`, { withCredentials: true });
   }
 
   created(data: any): Observable<any>{

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ICar } from '../../shared/interfaces/car';
 
 import { SearchService } from '../../services/search.service';
 
@@ -9,12 +11,10 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./recent.component.sass']
 })
 export class RecentComponent {
-  recentCars: any;
+  recentCars$: Observable<ICar[]>;
   
   constructor(private searchService: SearchService, private router: Router) { 
-    this.searchService.recent().subscribe(
-      car => this.recentCars = car
-    );
+    this.recentCars$ = this.searchService.recent();
   }
 
   showDetails(carId: any) {
