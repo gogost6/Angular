@@ -7,9 +7,6 @@ const { COOKIE_NAME, TOKEN_SECRET, COOKIE_DOMAIN } = require('../config');
 const { isAuth, isGuest } = require('../middlewares/guards');
 const userService = require('../services/user');
 
-router.get('/register', (req, res) => {
-    res.send('WORKS')
-})
 
 router.post('/register', isGuest(),
     body('email')
