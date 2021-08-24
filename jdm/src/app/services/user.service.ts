@@ -9,11 +9,11 @@ import { environment } from '../../environments/environment';
 import { IUser } from '../shared/interfaces/register';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   private userSubject: BehaviorSubject<any>;
-  public user: Observable<IUser>
+  public user: Observable<IUser>;
 
   get isLogged(): boolean {
     return localStorage.getItem('user') !== null ? true : false;
@@ -23,11 +23,10 @@ export class UserService {
     return localStorage.getItem('user');
   }
 
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-  ) {
-    this.userSubject = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem('user') || "{}"));
+  constructor(private router: Router, private http: HttpClient) {
+    this.userSubject = new BehaviorSubject<IUser>(
+      JSON.parse(localStorage.getItem('user') || '{}')
+    );
     this.user = this.userSubject.asObservable();
   }
 
@@ -36,18 +35,26 @@ export class UserService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<IUser>(`${environment.apiUrl}/user/login`, { username, password }, { withCredentials: true })
-      .pipe(map(user => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('user', JSON.stringify(user));
-        this.userSubject.next(user);
-        return user;
-      }));
+    return this.http
+      .post<IUser>(
+        `${environment.apiUrl}/user/login`,
+        { username, password },
+        { withCredentials: true }
+      )
+      .pipe(
+        map((user) => {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('user', JSON.stringify(user));
+          this.userSubject.next(user);
+          return user;
+        })
+      );
   }
 
   logout() {
     // remove user from local storage and set current user to null
-    this.http.get<any>(`${environment.apiUrl}/user/logout`, { withCredentials: true })
+    this.http
+      .get<any>(`${environment.apiUrl}/user/logout`, { withCredentials: true })
       .subscribe();
     localStorage.removeItem('user');
     this.userSubject.next(null);
@@ -55,13 +62,17 @@ export class UserService {
   }
 
   register(userData: IUser) {
-    return this.http.post(`${environment.apiUrl}/user/register`, userData, { withCredentials: true })
+    return this.http
+      .post(`${environment.apiUrl}/user/register`, userData, {
+        withCredentials: true,
+      })
       .pipe(
-        map(user => {
+        map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('user', JSON.stringify(user));
           this.userSubject.next(user);
-        }))
+        })
+      )
       .subscribe(
         (response) => {
           this.router.navigate(['/home']);
@@ -71,18 +82,18 @@ export class UserService {
   }
 
   edit(id: string, userData: IUser, curUsername: string, curTelephone: number) {
-    return this.http.post(`${environment.apiUrl}/user/edit`, { id, ...userData, curUsername, curTelephone }, { withCredentials: true })
+    return this.http
+      .post(
+        `${environment.apiUrl}/user/edit`,
+        { id, ...userData, curUsername, curTelephone },
+        { withCredentials: true }
+      )
       .pipe(
-        map(user => {
+        map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('user', JSON.stringify(user));
           this.userSubject.next(user);
-        }))
-      .subscribe(
-        (response) => {
-          this.router.navigate(['/']);
-        },
-        (error) => console.log(error)
+        })
       );
   }
 }

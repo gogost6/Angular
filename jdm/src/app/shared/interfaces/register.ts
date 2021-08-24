@@ -7,4 +7,6 @@ export interface IUser {
     _id: string;
     createdAutos: string[];
     favourite: string[];
+    oldPassword: string;
+    newPassword: string;
 }

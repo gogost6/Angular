@@ -3,7 +3,7 @@
         <div class="col-md-4">
             
             <div class="form-group">
-                <label class="form-control-label" for="username">Username</label>
+                <label class="form-control-label" for="username">New Username</label>
                 <input class="form-control" id="username" type="text" name="username" #usernameInput="ngModel" required [minlength]="5" [ngModel]="userData.username">
                 <div *ngIf="usernameInput.invalid && usernameInput.touched" class="alert alert-danger" style="margin-top: 5px;">
                     <div *ngIf="usernameInput.errors?.required">Username is required!</div>
@@ -11,28 +11,32 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="form-control-label" for="telephone">Telephone</label>
+                <label class="form-control-label" for="telephone">New Telephone</label>
                 <input class="form-control" id="telephone" type="text" name="telephone" #telephoneInput="ngModel" required [ngModel]="userData.telephone">
                 <div *ngIf="telephoneInput.invalid && telephoneInput.touched" class="alert alert-danger" style="margin-top: 5px;">
                     <div *ngIf="telephoneInput.errors?.required">Telephone is required!</div>
                 </div>
             </div>
-            <!-- <div class="form-group">
-                <label class="form-control-label" for="password">New Password</label>
-                <input class=form-control id="password" type="password" name="password" #passwordInput="ngModel" [minlength]="4" required ngModel> 
+            <div class="form-group">
+                <label class="form-control-label" for="password">Old Password</label>
+                <input class=form-control id="password" type="password" name="oldPassword" #passwordInput="ngModel" [minlength]="4" ngModel> 
                 <div *ngIf="passwordInput.invalid && passwordInput.touched" class="alert alert-danger" style="margin-top: 5px;">
-                    <div *ngIf="passwordInput.errors?.required">Password is required!</div>
                     <div *ngIf="passwordInput.errors?.minlength">Password should be atleast 4 chars!</div>
                 </div>
             </div>
             <div class="form-group">
-                <label class="form-control-label" for="rePass">New Repeat</label>
-                <input class=form-control id="rePass" type="password" name="rePass" #rePassInput="ngModel" [pattern]="passwordInput.value" required ngModel>
+                <label class="form-control-label" for="rePass">New Password</label>
+                <input class=form-control id="rePass" type="password" name="newPassword" #rePassInput="ngModel" ngModel>
                 <div *ngIf="rePassInput.invalid && rePassInput.touched" class="alert alert-danger" style="margin-top: 5px;">
-                    <div *ngIf="rePassInput.errors?.required">Repeat password is required!</div>
-                    <div *ngIf="rePassInput.errors?.pattern">Repeat password is not equal to password!</div>
+                    <div *ngIf="!passwordInput">In order to edit your new password type your old first!</div>
+                    <div *ngIf="rePassInput == passwordInput">New password can't be old password!</div>
                 </div>
-            </div> -->
+                <div *ngIf="editErrors">
+                    <div *ngFor="let error of editErrors" class="alert alert-danger" style="margin-top: 5px;">
+                        {{error}}
+                    </div>
+                </div>
+            </div>
             <button class="btn btn-primary" style="margin-top: 12px;">Edit</button>
         </div>
     </div>
