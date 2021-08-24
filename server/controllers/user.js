@@ -87,6 +87,7 @@ router.post(
 
 router.post(
   "/login",
+  isGuest(),
   body("username")
     .trim()
     .isAlphanumeric()
