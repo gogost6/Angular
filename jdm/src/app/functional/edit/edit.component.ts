@@ -95,7 +95,7 @@ export class EditComponent implements OnInit {
   editHandler(form: NgForm) {
     let body = Object.assign(form.value, { imgUrl: this.imagesUrl });
     this.carService.edit(this.id, body).subscribe();
-    this.router.navigate(['/details', this.id]);
+    this.router.navigate(['/api/details', this.id]);
   }
 
   ngOnInit() {

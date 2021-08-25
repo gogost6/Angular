@@ -34,7 +34,7 @@ export class FormComponent {
   searchHandler(form: NgForm): void {
     if (form.invalid) { throw new Error('Invalid form!'); }
     localStorage.setItem('carData', JSON.stringify(form.value));
-    this.router.navigate(['/search-car']);
+    this.router.navigate(['/api/search-car']);
   }
 
 }

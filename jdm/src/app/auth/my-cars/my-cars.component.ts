@@ -8,12 +8,21 @@ import { ICar } from 'src/app/shared/interfaces/car';
 @Component({
   selector: 'app-my-cars',
   templateUrl: './my-cars.component.html',
-  styleUrls: ['./my-cars.component.sass']
+  styleUrls: ['./my-cars.component.sass'],
 })
 export class MyCarsComponent {
-  cars$: Observable<ICar[]>;
+  isLoading: boolean = true;
+  cars$!: ICar[];
 
-  constructor(private searchService: SearchService, private userService: UserService) {
-    this.cars$ = searchService.created(JSON.parse(userService.userData).createdAutos);
+  constructor(
+    private searchService: SearchService,
+    private userService: UserService
+  ) {
+    searchService
+      .created(JSON.parse(userService.userData).createdAutos)
+      .subscribe((cars) => {
+        this.cars$ = cars;
+        this.isLoading = false;
+      });
   }
 }

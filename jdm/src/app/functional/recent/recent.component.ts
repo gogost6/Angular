@@ -19,11 +19,10 @@ export class RecentComponent {
 
   showDetails(carId: any) {
     try {
-      const url: any = `/details/${carId}`;
-      this.router.navigate([url]);
+      this.router.navigate([`/api/details/${carId}`]);
     } catch(err) {
       console.log(err);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
     }
   }
 }

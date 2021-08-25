@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { environment } from '../../environments/environment';
 import { ICar } from '../shared/interfaces/car';
 
 @Injectable({
@@ -14,14 +13,14 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   delete(id: string): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/auto/delete/${id}`, { withCredentials: true });
+    return this.http.get<any>(`/api/auto/delete/${id}`);
   }
 
   post(body: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/auto/post-car`, body, { withCredentials: true });
+    return this.http.post<any>(`/api/auto/post-car`, body);
   }
 
   edit(id: string | null, body: ICar): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/auto/edit/${id}`, body, { withCredentials: true });
+    return this.http.post<any>(`/api/auto/edit/${id}`, body);
   }
 }

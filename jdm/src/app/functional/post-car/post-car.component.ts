@@ -89,7 +89,7 @@ export class PostCarComponent {
     let body = Object.assign(form.value, { imgUrl: this.imagesUrl });
     this.carService.post(body)
       .subscribe(
-        (response) => this.router.navigate(['/home']),
+        (response) => this.router.navigate(['/']),
         (error) =>{
           this.postErr = error;
         } 

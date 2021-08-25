@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from '../../environments/environment';
 import { ICar } from '../shared/interfaces/car';
 import { SharedService } from './shared.service';
 
@@ -21,27 +20,21 @@ export class SearchService {
 
   search(data: ICar) {
     return this.http.post<ICar[]>(
-      `${environment.apiUrl}/auto/search-cars`,
+      `/api/auto/search-cars`,
       data,
       { withCredentials: true }
     );
   }
 
   details(id: string | null): Observable<ICar> {
-    return this.http.get<ICar>(`${environment.apiUrl}/auto/details/${id}`, {
-      withCredentials: true,
-    });
+    return this.http.get<ICar>(`/api/auto/details/${id}`);
   }
 
   recent(): Observable<ICar[]> {
-    return this.http.get<ICar[]>(`${environment.apiUrl}/auto/recent-cars`, {
-      withCredentials: true,
-    });
+    return this.http.get<ICar[]>(`/api/auto/recent-cars`);
   }
 
   created(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/auto/created`, data, {
-      withCredentials: true,
-    });
+    return this.http.post<any>(`/api/auto/created`, data);
   }
 }

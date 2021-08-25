@@ -1,12 +1,12 @@
 <div class="container" style="margin-top: 10px;">
   <div class="fs-5" style="margin-bottom: 10px;">My cars:</div>
   <div class="list-group">
-    <app-loader *ngIf="!(cars$ | async)"></app-loader>
-    <div *ngIf="(cars$ | async)?.length! <= 0">
-      <p>You have no offers yet! <a routerLink="/post-car">Create one?</a></p>
+    <app-loader *ngIf="isLoading"></app-loader>
+    <div *ngIf="cars$?.length! <= 0">
+      <p>You have no offers yet! <a routerLink="/api/post-car">Create one?</a></p>
     </div>
 
-    <ng-container *ngFor="let car of cars$ | async">
+    <ng-container *ngFor="let car of cars$">
       <a routerLink="/details/{{car._id}}" class="list-group-item list-group-item-action" aria-current="true">
         {{car.make}} {{car.model}} {{car.variant}}
       </a>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { FormComponent } from './functional/form/form.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
@@ -8,11 +8,15 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/home'
+    redirectTo: '/api/home'
   },
   {
-    path: 'home',
-    component: FormComponent
+    path: 'api',
+    loadChildren: () => import('./functional/functional.module').then(m => m.FunctionalModule)
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: '**',
@@ -21,7 +25,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

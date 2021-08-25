@@ -7,7 +7,7 @@
   </div>
   <ng-image-slider [images]="car.imgUrl" #nav></ng-image-slider>
   <div *ngIf="isOwner" style="margin-top: 10px; margin-bottom: 10px;">
-    <button class="btn btn-success" [routerLink]="['/edit', car._id]" style="margin-right: 5px;">Edit</button>
+    <button class="btn btn-success" [routerLink]="['/api/edit', car._id]" style="margin-right: 5px;">Edit</button>
     <button class="btn btn-danger" (click)="deleteCar(car._id)">Delete</button>
   </div>
   <ul class="list-group list-group-flush">

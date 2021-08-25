@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { appInterceptorProvider } from './app-interceptor';
+
 import { HeaderComponent } from './header/header.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -17,9 +19,10 @@ import { AuthModule } from '../auth/auth.module';
   ],
   imports: [
     CommonModule,
-    RouterModule,
-    FunctionalModule,
-    AuthModule
+    RouterModule
+  ],
+  providers: [
+    appInterceptorProvider
   ],
   exports: [
     HeaderComponent

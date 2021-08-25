@@ -1,7 +1,7 @@
 <app-loader *ngIf="!searchCars" style="margin-left: 410px;"></app-loader>
 <div *ngIf="searchCars">
     <div class="h" style="margin-left: 410px;">
-        <a class="btn btn-light" routerLink="/home">New search</a>
+        <a class="btn btn-light" routerLink="/api/home">New search</a>
         <div class="mrg" *ngIf="searchCars.length == 0">0 cars found</div>
         <div class="mrg" *ngIf="searchCars.length > 1">{{searchCars.length}} cars found</div>
         <div class="mrg" *ngIf="searchCars.length == 1">{{searchCars.length}} car found</div>

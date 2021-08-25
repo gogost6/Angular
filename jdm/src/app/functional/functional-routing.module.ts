@@ -7,9 +7,14 @@ import { EditComponent } from '../functional/edit/edit.component';
 import { PostCarComponent } from '../functional/post-car/post-car.component';
 import { SearchComponent } from '../functional/search/search.component';
 import { EditGuard } from './edit/edit.guard';
+import { FormComponent } from './form/form.component';
 
 
 const routes: Routes = [
+    {
+        path: 'home',
+        component: FormComponent
+    },
     {
         path: 'search',
         component: SearchComponent

@@ -2,7 +2,7 @@
     <div class="container" style="padding-top: 10px; margin-left: 410px;">
         <div class="row">
             <div class="col">
-                <a routerLink="/details/{{car._id}}" style="text-decoration: none;">
+                <a routerLink="/api/details/{{car._id}}" style="text-decoration: none;">
                     <div class="fs-5">{{car.make}} {{car.model}} {{car.variant}}</div>
                     <img [src]="car.imgUrl[0].image" alt="carAlt" style="width: 200px;">
                 </a>

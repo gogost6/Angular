@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { environment } from '../../environments/environment';
 import { IUser } from '../shared/interfaces/register';
 
 @Injectable({
@@ -36,11 +35,7 @@ export class UserService {
 
   login(username: string, password: string) {
     return this.http
-      .post<IUser>(
-        `${environment.apiUrl}/user/login`,
-        { username, password },
-        { withCredentials: true }
-      )
+      .post<IUser>(`/api/user/login`, { username, password })
       .pipe(
         map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -53,35 +48,25 @@ export class UserService {
 
   logout() {
     // remove user from local storage and set current user to null
-    this.http
-      .get<any>(`${environment.apiUrl}/user/logout`, { withCredentials: true })
-      .subscribe();
+    this.http.get<any>(`/api/user/logout`).subscribe();
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/user/login']);
   }
 
   register(userData: IUser) {
-    return this.http
-      .post(`${environment.apiUrl}/user/register`, userData, {
-        withCredentials: true,
+    return this.http.post(`/api/user/register`, userData).pipe(
+      map((user) => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('user', JSON.stringify(user));
+        this.userSubject.next(user);
       })
-      .pipe(
-        map((user) => {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('user', JSON.stringify(user));
-          this.userSubject.next(user);
-        })
-      );
+    );
   }
 
   edit(id: string, userData: IUser, curUsername: string, curTelephone: number) {
     return this.http
-      .post(
-        `${environment.apiUrl}/user/edit`,
-        { id, ...userData, curUsername, curTelephone },
-        { withCredentials: true }
-      )
+      .post(`/api/user/edit`, { id, ...userData, curUsername, curTelephone })
       .pipe(
         map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
