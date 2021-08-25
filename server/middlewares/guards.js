@@ -19,7 +19,7 @@ module.exports = {
     },
     isOwner() {
         return (req, res, next) => {
-            if (req.data.car && req.user && (req.data.car.owner.email == res.locals.user.email)) {
+            if (req.data.car && req.user && (req.data.car.owner.email == req.user.email)) {
                 next();
             } else {
                 res.status(400);
