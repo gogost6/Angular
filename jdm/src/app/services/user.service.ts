@@ -72,12 +72,6 @@ export class UserService {
           localStorage.setItem('user', JSON.stringify(user));
           this.userSubject.next(user);
         })
-      )
-      .subscribe(
-        (response) => {
-          this.router.navigate(['/home']);
-        },
-        (error) => console.log(error)
       );
   }
 
