@@ -47,6 +47,9 @@
                     <div *ngIf="rePassInput.errors?.pattern">Repeat password is not equal to password!</div>
                 </div>
             </div>
+            <div *ngIf="registerErrors" class="alert alert-danger" style="margin-top: 10px;">
+                {{registerErrors}}
+            </div>
             <button class="btn btn-primary" style="margin-top: 12px;">Register</button>
         </div>
     </div>

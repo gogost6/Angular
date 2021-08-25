@@ -22,7 +22,7 @@
                         <div *ngIf="passwordInput.errors?.required">Password is required!</div>
                     </div>
                 </div>
-                <div *ngIf="loginError" class="alert alert-danger">
+                <div *ngIf="loginError" class="alert alert-danger" style="margin-top: 10px;">
                     {{loginError}}
                 </div>
                 <button  class="btn btn-primary" style="margin-top: 12px;">Login</button>

@@ -15,6 +15,7 @@ export class LoginComponent {
 
   loginHandler(form: NgForm): void {
     if (form.invalid) {
+      this.loginError = 'Please fill all fields!';
       throw new Error('Invalid form!');
     }
     const { username, password } = form.value;
