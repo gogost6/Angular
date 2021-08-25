@@ -115,10 +115,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col" style="margin-bottom: 10px;">
             <label for="description">Description</label>
             <input class="form-control" type="text" name="description" id="description" [ngModel]="car.description">
         </div>
+    </div>
+    <div class="col">
+        <ngx-dropzone class="dropzone" (change)="onFilesAdded($event)"
+            accept="image/jpeg,image/jpg,image/png,image/gif">
+            <ngx-dropzone-label>Drop your images here!</ngx-dropzone-label>
+            <ngx-dropzone-image-preview [removable]="true" (removed)="onRemove(f)" ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files" [file]="f">
+            </ngx-dropzone-image-preview>
+        </ngx-dropzone>
+        <button class="btn btn-secondary" style="margin-top: 5px; margin-bottom: 5px;" *ngIf="isButtonVisible" (click)="uploadPhotos($event)">Upload</button>
+        <button class="btn btn-success" style="margin-top: 5px; margin-bottom: 5px;" *ngIf="!isButtonVisible" disabled>Success</button>
     </div>
     <button class="btn btn-primary" style="margin-top: 10px;">Edit</button>
 </form>
