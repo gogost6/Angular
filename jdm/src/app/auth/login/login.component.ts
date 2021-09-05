@@ -15,7 +15,7 @@ export class LoginComponent {
 
   loginHandler(form: NgForm): void {
     if (form.invalid) {
-      this.loginError = 'Please fill all fields!';
+      this.loginError = 'Wrong username or password!';
       throw new Error('Invalid form!');
     }
     const { username, password } = form.value;
@@ -24,7 +24,7 @@ export class LoginComponent {
         this.router.navigate(['/']);
       },
       (error) => {
-        this.loginError = error.error.msg;
+        this.loginError = 'Wrong username or password!';
       }
     );
   }

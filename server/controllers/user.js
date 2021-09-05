@@ -127,7 +127,7 @@ router.post(
       }
     } catch (err) {
       console.log(err);
-      res.status(401).json({ msg: err });
+      res.status(401).json({ });
     }
   }
 );
