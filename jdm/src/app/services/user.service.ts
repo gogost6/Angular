@@ -75,4 +75,12 @@ export class UserService {
         })
       );
   }
+
+  isFreeUsername(username: string) {
+    return this.http.get(`/api/user/free-username/${username}`);
+  }
+
+  isFreeEmail(email: string) {
+    return this.http.get(`/api/user/free-email/${email}`);
+  }
 }

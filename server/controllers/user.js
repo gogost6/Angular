@@ -80,7 +80,7 @@ router.post(
       res.json(userViewModel);
     } catch (err) {
       console.log(err);
-      res.status(401).json({ message: "Error with login!" });
+      res.status(401).json({ err });
     }
   }
 );
@@ -127,7 +127,7 @@ router.post(
       }
     } catch (err) {
       console.log(err);
-      res.status(401).json({ msg: "Wrong username or password!" });
+      res.status(401).json({ msg: err });
     }
   }
 );
@@ -209,4 +209,11 @@ router.get("/logout", (req, res) => {
   res.clearCookie(COOKIE_NAME).status(200).end();
 });
 
+router.get("/free-username/:username", async (req, res) => {
+    res.json(!!(await userService.getUserByUsername(req.params.username))); 
+});
+
+router.get("/free-email/:email", async (req, res) => {
+  res.json(!!(await userService.getUserByEmail(req.params.email))); 
+});
 module.exports = router;

@@ -1,57 +1,165 @@
 <div class="container">
-    <div class="col-md-12">
-        <h1>Register New User</h1>
-        <p>Please fill all fields.</p>
-    </div>
-    
-    <form #form="ngForm" (ngSubmit)="registerHandler(form)" >
+  <div class="col-md-12">
+    <h1>Register New User</h1>
+    <p>Please fill all fields.</p>
+  </div>
+
+  <form #form="ngForm" (ngSubmit)="registerHandler(form)">
     <div class="row space-top">
-        <div class="col-md-4">
-            
-            <div class="form-group">
-                <label class="form-control-label" for="email">Email</label>
-                <input class=form-control id="email" type="text" name="email" #emailInput="ngModel" email required ngModel>
-                <div *ngIf="emailInput.invalid && emailInput.touched" class="alert alert-danger" style="margin-top: 5px;">
-                    <div *ngIf="emailInput.errors?.required">Email is required</div>
-                    <div *ngIf="emailInput.errors?.email">Email is invalid</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-control-label" for="username">Username</label>
-                <input class="form-control" id="username" type="text" name="username" #usernameInput="ngModel" required [minlength]="5" ngModel>
-                <div *ngIf="usernameInput.invalid && usernameInput.touched" class="alert alert-danger" style="margin-top: 5px;">
-                    <div *ngIf="usernameInput.errors?.required">Username is required!</div>
-                    <div *ngIf="usernameInput.errors?.minlength">Username should be atleast 5 chars!</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-control-label" for="telephone">Telephone</label>
-                <input class="form-control" id="telephone" type="text" name="telephone" #telephoneInput="ngModel" required ngModel>
-                <div *ngIf="telephoneInput.invalid && telephoneInput.touched" class="alert alert-danger" style="margin-top: 5px;">
-                    <div *ngIf="telephoneInput.errors?.required">Telephone is required!</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-control-label" for="password">Password</label>
-                <input class=form-control id="password" type="password" name="password" #passwordInput="ngModel" [minlength]="4" required ngModel> 
-                <div *ngIf="passwordInput.invalid && passwordInput.touched" class="alert alert-danger" style="margin-top: 5px;">
-                    <div *ngIf="passwordInput.errors?.required">Password is required!</div>
-                    <div *ngIf="passwordInput.errors?.minlength">Password should be atleast 4 chars!</div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-control-label" for="rePass">Repeat</label>
-                <input class=form-control id="rePass" type="password" name="rePass" #rePassInput="ngModel" [pattern]="passwordInput.value" required ngModel>
-                <div *ngIf="rePassInput.invalid && rePassInput.touched" class="alert alert-danger" style="margin-top: 5px;">
-                    <div *ngIf="rePassInput.errors?.required">Repeat password is required!</div>
-                    <div *ngIf="rePassInput.errors?.pattern">Repeat password is not equal to password!</div>
-                </div>
-            </div>
-            <div *ngIf="registerErrors" class="alert alert-danger" style="margin-top: 10px;">
-                {{registerErrors}}
-            </div>
-            <button class="btn btn-primary" style="margin-top: 12px;">Register</button>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="form-control-label" for="email">Email</label>
+          <input
+            class="form-control"
+            id="email"
+            type="text"
+            name="email"
+            #emailInput="ngModel"
+            #emailHtml
+            email
+            required
+            ngModel
+          />
+          <div
+          *ngIf="usedEmailError"
+          class="alert alert-danger"
+          style="margin-top: 5px "
+        >
+          Email is taken!
         </div>
+          <div
+            *ngIf="emailInput.invalid && emailInput.dirty"
+            class="alert alert-danger"
+            style="margin-top: 5px"
+          >
+            <div *ngIf="emailInput.errors?.required">Email is required</div>
+            <div *ngIf="emailInput.errors?.email">Email is invalid</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="username">Username</label>
+          <input
+            class="form-control"
+            id="username"
+            type="text"
+            name="username"
+            #usernameInput="ngModel"
+            #usernameHtml
+            required
+            [minlength]="5"
+            ngModel
+          />
+          <div
+            *ngIf="usedUsernameError"
+            class="alert alert-danger"
+            style="margin-top: 5px"
+          >
+            Username is taken!
+          </div>
+          <div
+            *ngIf="usernameInput.invalid && usernameInput.dirty"
+            class="alert alert-danger"
+            style="margin-top: 5px"
+          >
+            <div *ngIf="usernameInput.errors?.required">
+              Username is required!
+            </div>
+            <div *ngIf="usernameInput.errors?.minlength">
+              Username should be atleast 5 chars!
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="telephone">Telephone</label>
+          <input
+            class="form-control"
+            id="telephone"
+            type="text"
+            name="telephone"
+            #telephoneInput="ngModel"
+            required
+            ngModel
+          />
+          <div
+            *ngIf="telephoneInput.invalid && telephoneInput.dirty"
+            class="alert alert-danger"
+            style="margin-top: 5px"
+          >
+            <div *ngIf="telephoneInput.errors?.required">
+              Telephone is required!
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="password">Password</label>
+          <input
+            class="form-control"
+            id="password"
+            type="password"
+            name="password"
+            #passwordInput="ngModel"
+            [minlength]="4"
+            required
+            ngModel
+          />
+          <div
+            *ngIf="passwordInput.invalid && passwordInput.dirty"
+            class="alert alert-danger"
+            style="margin-top: 5px"
+          >
+            <div *ngIf="passwordInput.errors?.required">
+              Password is required!
+            </div>
+            <div *ngIf="passwordInput.errors?.minlength">
+              Password should be atleast 4 chars!
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label" for="rePass">Repeat</label>
+          <input
+            class="form-control"
+            id="rePass"
+            type="password"
+            name="rePass"
+            #rePassInput="ngModel"
+            [pattern]="passwordInput.value"
+            required
+            ngModel
+          />
+          <div
+            *ngIf="rePassInput.invalid && rePassInput.dirty"
+            class="alert alert-danger"
+            style="margin-top: 5px"
+          >
+            <div *ngIf="rePassInput.errors?.required">
+              Repeat password is required!
+            </div>
+            <div *ngIf="rePassInput.errors?.pattern">
+              Repeat password is not equal to password!
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="registerErrors.length > 0"
+          class="alert alert-danger"
+          style="margin-top: 10px"
+        >
+          <div *ngFor="let err of registerErrors">
+            {{ err }}
+          </div>
+        </div>
+        <div
+          *ngIf="invalidFormError"
+          class="alert alert-danger"
+          style="margin-top: 10px"
+        >
+          {{ invalidFormError }}
+        </div>
+        <button class="btn btn-primary" style="margin-top: 12px">
+          Register
+        </button>
+      </div>
     </div>
-    </form>
+  </form>
 </div>
