@@ -30,7 +30,7 @@ export class RegisterComponent implements AfterViewInit {
     fromEvent(this.usernameHtml.nativeElement, 'input')
       .pipe(
         map((e) => (e.target as HTMLInputElement).value),
-        debounceTime(500),
+        debounceTime(1000),
         distinctUntilChanged(),
         filter((x) => x !== '')
       )
@@ -46,7 +46,7 @@ export class RegisterComponent implements AfterViewInit {
     fromEvent(this.emailHtml.nativeElement, 'input')
       .pipe(
         map((e) => (e.target as HTMLInputElement).value),
-        debounceTime(500),
+        debounceTime(2000),
         distinctUntilChanged(),
         filter((x) => x !== '')
       )
