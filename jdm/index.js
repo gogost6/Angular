@@ -1,9 +1,9 @@
 const express = require("express");
 
-const databaseConfig = require("./config/database");
-const routesConfig = require("./config/routes");
-const expressConfig = require("./config/express");
-const storage = require("./middlewares/storage");
+const databaseConfig = require("./server/config/database");
+const routesConfig = require("./server/config/routes");
+const expressConfig = require("./server/config/express");
+const storage = require("./server/middlewares/storage");
 
 start();
 
