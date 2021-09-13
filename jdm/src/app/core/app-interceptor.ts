@@ -8,7 +8,7 @@ import {
 import { Injectable, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-const { apiUrl } = environment;
+// const { apiUrl } = environment;
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
@@ -19,7 +19,7 @@ export class AppInterceptor implements HttpInterceptor {
     if (req.url.startsWith('/api')) {
       return next.handle(
         req.clone({
-          url: req.url.replace('/api', apiUrl),
+          url: req.url.replace('/api', 'http://localhost:3000/api'),
           withCredentials: true,
         })
       );
