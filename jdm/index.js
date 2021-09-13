@@ -16,6 +16,10 @@ async function start() {
 
   expressConfig(app);
 
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "jdm/src/index.html"));
+});
+
   app.listen(port, () =>
     console.log(`Server is running on http://localhost:${port}`)
   );
