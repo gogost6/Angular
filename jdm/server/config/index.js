@@ -19,7 +19,7 @@ const config = {
   },
   production: {
     PORT: process.env.PORT || 80,
-    DB_CONNECTION: "mongodb+srv://gogog:<11111>@cluster0.xfvou.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    DB_CONNECTION: "mongodb+srv://gogog:<11111>@cluster0.xfvou.mongodb.net/jdm?retryWrites=true&w=majority",
     COOKIE_NAME: "SESSION_DATA",
     SECRET: "very strong secret",
     SALT_ROUNDS: 10,

@@ -1,4 +1,3 @@
-const { log } = require("console");
 const express = require("express");
 const path = require("path");
 
@@ -9,13 +8,12 @@ const storage = require("./server/middlewares/storage");
 
 const allowed = [".js", ".css", ".png", ".jpg"];
 
-const start = async () => {
-
+function start() {
   const port = process.env.PORT || 3000;
   const app = express();
 
   app.use(express.static(__dirname + "/dist/jdm"));
-  await databaseConfig(app);
+  databaseConfig(app);
   app.use(storage());
 
   expressConfig(app);
@@ -27,6 +25,6 @@ const start = async () => {
   app.listen(port, () =>
     console.log(`Server is running on http://localhost:${port}`)
   );
-}
+};
 
 start();
