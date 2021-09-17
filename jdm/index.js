@@ -19,17 +19,14 @@ async function start() {
   const port = process.env.PORT || 3000;
   const app = express();
 
+  app.use(express.static(__dirname + '/dist/jdm'))
   await databaseConfig(app);
   app.use(await storage());
 
   expressConfig(app);
 
   app.get("*", (req, res) => {
-    if (allowed.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
-        res.sendFile(path.resolve(`dist/jdm/${req.url}`));
-    } else {
-        res.sendFile(path.join(__dirname, "dist/jdm/index.html"));
-    }
+    res.sendFile(path.join(__dirname, "dist/jdm/index.html"));
 });
 
   app.listen(port, () =>
