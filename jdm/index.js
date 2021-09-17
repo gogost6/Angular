@@ -8,23 +8,19 @@ const storage = require("./server/middlewares/storage");
 
 const allowed = [".js", ".css", ".png", ".jpg"];
 
-function start() {
-  const port = process.env.PORT || 3000;
-  const app = express();
+const port = process.env.PORT || 3000;
+const app = express();
 
-  app.use(express.static(__dirname + "/dist/jdm"));
-  databaseConfig(app);
-  app.use(storage());
+app.use(express.static(__dirname + "/dist/jdm"));
+databaseConfig(app);
+app.use(storage());
 
-  expressConfig(app);
+expressConfig(app);
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "dist/jdm/index.html"));
-  });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist/jdm/index.html"));
+});
 
-  app.listen(port, () =>
-    console.log(`Server is running on http://localhost:${port}`)
-  );
-};
-
-start();
+app.listen(port, () =>
+  console.log(`Server is running on http://localhost:${port}`)
+);
