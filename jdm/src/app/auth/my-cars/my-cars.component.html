@@ -7,7 +7,7 @@
     </div>
 
     <ng-container *ngFor="let car of cars$">
-      <a routerLink="/details/{{car._id}}" class="list-group-item list-group-item-action" aria-current="true">
+      <a routerLink="/api/details/{{car._id}}" class="list-group-item list-group-item-action" aria-current="true">
         {{car.make}} {{car.model}} {{car.variant}}
       </a>
     </ng-container>
