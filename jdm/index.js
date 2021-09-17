@@ -9,7 +9,7 @@ const storage = require("./server/middlewares/storage");
 
 const allowed = [".js", ".css", ".png", ".jpg"];
 
-async function start() {
+const start = async () => {
 
   const port = process.env.PORT || 5000;
   const app = express();
