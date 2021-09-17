@@ -29,7 +29,7 @@ const config = {
       api_secret: process.env.CLOUDINARY_SECRET,
     },
     CORS: {
-      origin: ["https://jdm-car-market.herokuapp.com/"],
+      origin: ["https://jdm-car-market.herokuapp.com/", "http://localhost:3000"],
       credentials: true,
     },
   },
