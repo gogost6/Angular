@@ -16,7 +16,7 @@ const app = express();
 
 app.use(express.static(__dirname + "/dist/jdm"));
 //await databaseConfig(app);
-app.use(await storage());
+//app.use(await storage());
 
 expressConfig(app);
 
