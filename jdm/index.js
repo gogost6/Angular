@@ -11,7 +11,7 @@ const allowed = [".js", ".css", ".png", ".jpg"];
 
 const start = async () => {
 
-  const port = process.env.PORT || 5000;
+  const port = process.env.PORT || 3000;
   const app = express();
 
   app.use(express.static(__dirname + "/dist/jdm"));

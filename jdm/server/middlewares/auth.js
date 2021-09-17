@@ -1,12 +1,12 @@
-const { COOKIE_NAME, TOKEN_SECRET } = require('../config');
+const config = require('../config');
 const jwt = require('jsonwebtoken');
 
 module.exports = () => (req, res, next) => {
-    const token = req.cookies[COOKIE_NAME];
+    const token = req.cookies[config.COOKIE_NAME];
     
     try {
         if (token) {
-            const userData = jwt.verify(token, TOKEN_SECRET);
+            const userData = jwt.verify(token, config.TOKEN_SECRET);
             req.user = userData;
         }
     } catch (err) {

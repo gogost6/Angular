@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 
-const { COOKIE_NAME, TOKEN_SECRET, COOKIE_DOMAIN } = require("../config");
+const config = require("../config");
 const { isAuth, isGuest } = require("../middlewares/guards");
 const userService = require("../services/user");
 
@@ -74,9 +74,9 @@ router.post(
         username: user.username,
         telephone: user.telephone,
       };
-      const token = jwt.sign(userViewModel, TOKEN_SECRET);
+      const token = jwt.sign(userViewModel, config.TOKEN_SECRET);
 
-      res.cookie(COOKIE_NAME, token, { httpOnly: true });
+      res.cookie(config.COOKIE_NAME, token, { httpOnly: true });
       res.json(userViewModel);
     } catch (err) {
       console.log(err);
@@ -120,8 +120,8 @@ router.post(
             createdAutos: user.createdAutos,
             telephone: user.telephone,
           };
-          const token = jwt.sign(userViewModel, TOKEN_SECRET);
-          res.cookie(COOKIE_NAME, token, { httpOnly: true, sameSite: "Lax" });
+          const token = jwt.sign(userViewModel, config.TOKEN_SECRET);
+          res.cookie(config.COOKIE_NAME, token, { httpOnly: true, sameSite: "Lax" });
           res.json(userViewModel);
         }
       }
@@ -194,9 +194,9 @@ router.post(
         createdAutos: user.createdAutos,
         telephone: user.telephone,
       };
-      res.clearCookie(COOKIE_NAME);
-      const token = jwt.sign(userViewModel, TOKEN_SECRET);
-      res.cookie(COOKIE_NAME, token, { httpOnly: true, sameSite: "Lax" });
+      res.clearCookie(config.COOKIE_NAME);
+      const token = jwt.sign(userViewModel, config.TOKEN_SECRET);
+      res.cookie(config.COOKIE_NAME, token, { httpOnly: true, sameSite: "Lax" });
       res.json(userViewModel);
     } catch (err) {
       console.log(err.errors.map((e) => e.msg));
@@ -206,7 +206,7 @@ router.post(
 );
 
 router.get("/logout", (req, res) => {
-  res.clearCookie(COOKIE_NAME).status(200).end();
+  res.clearCookie(config.COOKIE_NAME).status(200).end();
 });
 
 router.get("/free-username/:username", async (req, res) => {
