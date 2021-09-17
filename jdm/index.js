@@ -6,30 +6,25 @@ const routesConfig = require("./server/config/routes");
 const expressConfig = require("./server/config/express");
 const storage = require("./server/middlewares/storage");
 
-const allowed = [
-  ".js",
-  ".css",
-  ".png",
-  ".jpg"
-];
+const allowed = [".js", ".css", ".png", ".jpg"];
 
-start();
+// start();
 
-async function start() {
-  const port = process.env.PORT || 3000;
-  const app = express();
+// async function start() {
+const port = process.env.PORT || 5000;
+const app = express();
 
-  app.use(express.static(__dirname + '/dist/jdm'))
-  await databaseConfig(app);
-  app.use(await storage());
+app.use(express.static(__dirname + "/dist/jdm"));
+//await databaseConfig(app);
+app.use(await storage());
 
-  expressConfig(app);
+expressConfig(app);
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "dist/jdm/index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist/jdm/index.html"));
 });
 
-  app.listen(port, () =>
-    console.log(`Server is running on http://localhost:${port}`)
-  );
-}
+app.listen(port, () =>
+  console.log(`Server is running on http://localhost:${port}`)
+);
+// }
