@@ -75,7 +75,7 @@ export class RegisterComponent implements AfterViewInit {
     }
     this.userService.register(form.value).subscribe(
       (response) => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/api/home']);
       },
       (error) => {
         console.log(error);
