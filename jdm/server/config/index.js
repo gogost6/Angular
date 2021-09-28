@@ -20,7 +20,7 @@ const config = {
   production: {
     PORT: process.env.PORT || 80,
     COOKIE_NAME: "SESSION_DATA",
-    SECRET: "very strong secret",
+    TOKEN_SECRET: "very strong secret",
     SALT_ROUNDS: 10,
     CLOUDINARY: {
       cloud_name: process.env.CLOUDINARY_NAME,
