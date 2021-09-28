@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const config = require(".");
 
 module.exports = (app) => {
+  console.log(process.env)
   if(process.env.NODE_ENV) {
     const { MongoClient } = require('mongodb');
     const uri = "mongodb+srv://gogog:11111@cluster0.xfvou.mongodb.net/jdm?retryWrites=true&w=majority";
