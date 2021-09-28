@@ -3,9 +3,9 @@ const config = require(".");
 
 module.exports = (app) => {
   console.log(process.env)
-  if(process.env.NODE_ENV) {
+  if(process.env.NODE_ENV == 'production') {
     const { MongoClient } = require('mongodb');
-    const uri = "mongodb+srv://gogog:11111@cluster0.xfvou.mongodb.net/jdm?retryWrites=true&w=majority";
+    const uri = process.env.MONGODB_URI;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     client.connect(err => {
       const collection = client.db("test").collection("devices");
