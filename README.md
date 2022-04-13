@@ -14,7 +14,7 @@ It is userfriendly after all!
   <li>Boostrap for the CSS</li>
 </ul>
  
- ### Test it
+ ## Test it
  
  <ol>
   <li>git clone https://github.com/gogost6/Angular.git to the folder you want</li>
